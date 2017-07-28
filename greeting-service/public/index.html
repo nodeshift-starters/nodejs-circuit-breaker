@@ -1,0 +1,210 @@
+<!--
+  ~
+  ~  Copyright 2017 Red Hat, Inc, and individual contributors.
+  ~
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~  http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  ~
+  -->
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>Circuit Breaker Mission - Node.js</title>
+<link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div>
+      <h1>Circuit Breaker Mission - Node.js</h1>
+      <p class="lead">
+            The Circuit Breaker pattern provides a generic
+            mechanism for quickly and easily reporting whether or not a
+            service is functioning properly. This allows a service to
+            report information about a failure and decide whether to
+            quickly fail or simply degrade gracefully instead of
+            failing.
+      </p>
+      <p class="lead">
+            Modern cloud applications are often comprised of
+            many smaller services which interact with each other in a
+            many-to-many manner. Understanding when a service is failing
+            or unavailable is critically important, which is the main
+            reason for the Health Check pattern. In some cases though,
+            you may want to provide an alternative response if a service
+            interacts with a failing or unavailable service. For
+            example, if <em>service1</em> interacts with <em>service2</em> and <em>service2</em>
+            begins to fail or become unavailable due to high load,
+            simply detecting the failure and restarting <em>service2</em> may not
+            alleviate the issue. Instead, you may want to signal
+            <em>service1</em> to reduce the amount of load it puts on <em>service2</em>
+            until <em>service2</em> returns to a normal state.
+      </p>
+      <p>
+            On this page you can invoke the <strong>greeting service</strong>. This service uses a <strong>name
+            service</strong>. The invocations are protected by a circuit breaker. You can configure the state of the
+            name service using the <strong>toggle</strong> button.
+      </p>
+
+      <div class="row">
+
+        <div class="col-md-6">
+          <h2>Greeting service</h2>
+          <div id="circuit-state"></div>
+          <button id="invoke" type="submit" class="btn btn-primary">Invoke</button>
+          <h3>Results:</h3>
+          <form class="form-inline">
+            <button id="clear" type="submit" class="btn btn-success">Clear</button>
+          </form>
+          <pre style="min-height:20em;"><code id="greeting-result"></code></pre>
+        </div>
+
+        <div class="col-md-6">
+          <h2>Name service</h2>
+          <div id="name-state"></div>
+          <form class="form-inline">
+            <button id="toggle" type="submit" class="btn btn-primary">Toggle</button>
+          </form>
+          <h3>Requests:</h3>
+          <form class="form-inline">
+            <button id="clear-requests" type="submit" class="btn btn-success">Clear</button>
+          </form>
+          <pre style="min-height:20em;"><code id="name-requests"></code></pre>
+        </div>
+
+      </div>
+
+    </div>
+
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"></script>
+
+    <script>
+    $(document).ready(function() {
+
+      let nameServiceUrlBase = window.location.origin.replace('nodejs-circuit-breaker-greeting', 'nodejs-circuit-breaker-name');
+
+      initializeServices();
+
+      function initializeServices () {
+        initNameServiceLocation()
+          .done(initNameServiceState)
+          .done(connectNameService)
+          .done(initCircuitState)
+          .done(connectCircuitService)
+          .fail(alert);
+      }
+
+      function initNameServiceLocation () {
+        return $.getJSON('/api/name-service-host',
+          (res) => (nameServiceUrlBase = res.host));
+      }
+
+      function initNameServiceState () {
+        return $.getJSON(`${nameServiceUrlBase}/api/info`,
+          (res) => updateNameServiceState(res.state === 'ok'));
+      }
+
+      function initCircuitState () {
+        return $.getJSON('/api/cb-state',
+          (res) => updateCircuitState(res.state === 'open'));
+      }
+
+      function updateNameServiceState(state) {
+        if (state) {
+          $('#name-state').html('<h3>Operational state: <span class=\"label label-info\">OK</span></h3>');
+        } else {
+          $('#name-state').html('<h3>Operational state: <span class=\"label label-warning\">FAIL</span></h3>');
+        }
+      }
+
+      function updateCircuitState(isOpen) {
+          if (isOpen) {
+            $('#circuit-state').html('<h3>Circuit breaker state: <span class=\"label label-warning\">OPEN</span></h3>');
+          } else {
+            $('#circuit-state').html('<h3>Circuit breaker state: <span class=\"label label-info\">CLOSED</span></h3>');
+          }
+      }
+
+      // WebSocket connections
+      function connectNameService() {
+        const wsUrlBase = nameServiceUrlBase.replace('http://', 'ws://');
+        const socketUrl = `${wsUrlBase}/name-ws`;
+
+        const wsocket = new WebSocket(socketUrl);
+        wsocket.onmessage = onMessage;
+        return Promise.resolve(wsocket);
+
+        function onMessage(evt) {
+          if (evt.data === 'state:true') {
+            updateNameServiceState(true);
+          } else if (evt.data === 'state:false') {
+            updateNameServiceState(false);
+          } else {
+            // Request accepted
+            $('#name-requests').prepend('GET /name at ' + evt.data + '\n');
+          }
+        }
+      }
+
+      function connectCircuitService() {
+        const cbWsUrlBase = window.location.origin.replace('http://', 'ws://');
+        const cbWsocket = new WebSocket(`${cbWsUrlBase}/cb-ws`);
+        cbWsocket.onmessage = (evt) => {
+          updateCircuitState(evt.data === 'isOpen:true');
+        };
+        return Promise.resolve(cbWsocket);
+      }
+
+      // UI event handlers
+      $('#invoke').click(function(e) {
+      $.getJSON('/api/greeting', function(res) {
+        $('#greeting-result').prepend(JSON.stringify(res) + '\n');
+      });
+      e.preventDefault();
+      });
+
+      $('#toggle').click(function(e) {
+      var newState = $('#name-state').html().indexOf('FAIL') != -1 ? 'ok' : 'fail';
+      $.ajax({
+            url: nameServiceUrlBase + '/api/state',
+            type: 'PUT',
+            headers: {'Content-Type' : 'application/json'},
+            data: JSON.stringify({state:newState}),
+          });
+      e.preventDefault();
+      });
+
+      $('#clear').click(function(e) {
+      $('#greeting-result').html('');
+      e.preventDefault();
+      });
+
+      $('#clear-requests').click(function(e) {
+      $('#name-requests').html('');
+      e.preventDefault();
+      });
+    });
+</script>
+</body>
+
+</html>

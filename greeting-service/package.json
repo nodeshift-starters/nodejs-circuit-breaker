@@ -1,0 +1,66 @@
+{
+  "name": "nodejs-circuit-breaker",
+  "version": "0.0.1",
+  "author": "Red Hat, Inc.",
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "tape test/*.js | tap-spec",
+    "lint": "eslint test/*.js index.js",
+    "prepare": "nsp check",
+    "coverage": "nyc npm test",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "dependencyCheck": "szero . --ci",
+    "release": "standard-version",
+    "start": "PORT=8080 node ./bin/www",
+    "openshift": "nodeshift --osc.strictSSL=false"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bucharest-gold/nodejs-circuit-breaker.git"
+  },
+  "files": [
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "bin",
+    "lib",
+    "public",
+    "app.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/bucharest-gold/nodejs-circuit-breaker/issues"
+  },
+  "homepage": "https://github.com/bucharest-gold/nodejs-circuit-breaker",
+  "devDependencies": {
+    "eslint": "~3.8.1",
+    "eslint-config-semistandard": "~7.0.0",
+    "eslint-config-standard": "~6.2.0",
+    "eslint-plugin-promise": "~3.3.0",
+    "eslint-plugin-react": "~6.4.1",
+    "eslint-plugin-standard": "~2.0.1",
+    "istanbul": "~0.4.5",
+    "nodeshift": "~0.3.0",
+    "nsp": "~2.6.2",
+    "nyc": "~11.0.3",
+    "standard-version": "^3.0.0",
+    "szero": "^0.7.1",
+    "tap-spec": "~4.1.1",
+    "tape": "~4.6.2"
+  },
+  "gitHubUser": "lance",
+  "description": "demonstrates a generic pattern for reporting the failure of a service and then limiting access to the failed service until it becomes available to handle requests.",
+  "keywords": [
+    "circuitbreaker",
+    "circuit",
+    "failfast",
+    "openshift",
+    "resiliency"
+  ],
+  "dependencies": {
+    "body-parser": "~1.17.2",
+    "express": "~4.15.3",
+    "express-ws": "~3.0.0",
+    "opossum": "~1.2.1",
+    "roi": "~0.15.0"
+  }
+}

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: nodejs-circuit-breaker-greeting
+spec:
+  template:
+    spec:
+      containers:
+        - readinessProbe:
+            httpGet:
+              path: /api/greeting
+              port: 8080
+              scheme: HTTP
+          livenessProbe:
+            httpGet:
+              path: /api/greeting
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 30

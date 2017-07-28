@@ -20,7 +20,6 @@
   },
   "files": [
     "package.json",
-    "README.md",
     "LICENSE",
     "bin",
     "lib",

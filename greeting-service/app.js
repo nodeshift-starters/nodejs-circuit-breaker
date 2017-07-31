@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 // greeting API
 app.get('/api/greeting', (request, response) => {
   circuit.fire(`${nameServiceHost}/api/name`).then(name => {
-    response.send({content: `Hello, ${name}`});
+    response.send({content: `Hello, ${name}`, time: new Date()});
   }).catch(console.error);
 });
 

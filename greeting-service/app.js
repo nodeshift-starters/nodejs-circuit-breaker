@@ -4,8 +4,7 @@ const bodyParser = require('body-parser');
 const opossum = require('opossum');
 const nameService = require('./lib/name-service-client');
 
-// TODO: Determine best way to handle this
-const nameServiceHost = process.env.NAME_SERVICE_HOST || 'http://localhost:3001';
+const nameServiceHost = process.env.NAME_SERVICE_HOST || 'http://nodejs-circuit-breaker-name:8080';
 
 const circuitOptions = {
   timeout: 3000, // If name service takes longer than .3 seconds, trigger a failure
@@ -40,6 +39,10 @@ app.get('/api/cb-state', (request, response) => {
 
 app.get('/api/name-service-host', (request, response) => {
   response.send({host: nameServiceHost});
+});
+
+app.get('/api/health', (request, response) => {
+  circuit.opened ? response.status(500).send('Circuit down') : response.send('OK');
 });
 
 module.exports = app;

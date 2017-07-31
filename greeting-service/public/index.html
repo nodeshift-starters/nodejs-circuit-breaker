@@ -101,7 +101,7 @@
     <script>
     $(document).ready(function() {
 
-      let nameServiceUrlBase = window.location.origin.replace('nodejs-circuit-breaker-greeting', 'nodejs-circuit-breaker-name');
+      let nameServiceUrlBase;
 
       initializeServices();
 
@@ -115,8 +115,12 @@
       }
 
       function initNameServiceLocation () {
-        return $.getJSON('/api/name-service-host',
-          (res) => (nameServiceUrlBase = res.host));
+        nameServiceUrlBase = window.location.origin.replace('greeting', 'name');
+        if (nameServiceUrlBase.includes('localhost')) {
+          return $.getJSON('/api/name-service-host',
+            (res) => (nameServiceUrlBase = res.host));
+        }
+        return $.Deferred().resolve(nameServiceUrlBase);
       }
 
       function initNameServiceState () {
@@ -149,7 +153,6 @@
       function connectNameService() {
         const wsUrlBase = nameServiceUrlBase.replace('http://', 'ws://');
         const socketUrl = `${wsUrlBase}/name-ws`;
-
         const wsocket = new WebSocket(socketUrl);
         wsocket.onmessage = onMessage;
         return Promise.resolve(wsocket);
@@ -177,9 +180,9 @@
 
       // UI event handlers
       $('#invoke').click(function(e) {
-      $.getJSON('/api/greeting', function(res) {
-        $('#greeting-result').prepend(JSON.stringify(res) + '\n');
-      });
+        $.getJSON('/api/greeting', function(res) {
+          $('#greeting-result').prepend(JSON.stringify(res) + '\n');
+        });
       e.preventDefault();
       });
 
@@ -195,8 +198,8 @@
       });
 
       $('#clear').click(function(e) {
-      $('#greeting-result').html('');
-      e.preventDefault();
+        $('#greeting-result').html('');
+        e.preventDefault();
       });
 
       $('#clear-requests').click(function(e) {

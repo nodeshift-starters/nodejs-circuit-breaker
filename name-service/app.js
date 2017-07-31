@@ -33,12 +33,14 @@ app.use(cors());
 
 // name service API
 app.get('/api/name', (request, response) => {
+  console.log('getting name');
   isOn ? response.send('World') : response.status(500).send('Name service down');
   app.sendMessage(`${new Date()} ${isOn ? 'OK' : 'FAIL'}`);
 });
 
 // current state of service
 app.put('/api/state', (request, response) => {
+  console.log('getting state');
   isOn = request.body.state === 'ok';
   response.send({state: isOn});
   app.update();
@@ -46,5 +48,10 @@ app.put('/api/state', (request, response) => {
 
 app.get('/api/info',
   (request, response) => response.send({ state: isOn ? 'ok' : 'fail' }));
+
+app.get('/api/health', (request, response) => {
+    isOn ? response.send('OK') : response.status(500).send('Name service down');
+  });
+
 
 module.exports = app;

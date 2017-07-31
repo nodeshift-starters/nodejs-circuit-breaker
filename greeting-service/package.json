@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-circuit-breaker",
+  "name": "nodejs-circuit-breaker-greeting",
   "version": "0.0.1",
   "author": "Red Hat, Inc.",
   "license": "Apache-2.0",

@@ -1,5 +1,5 @@
 {
-  "name": "name-service",
+  "name": "nodejs-circuit-breaker-name",
   "version": "0.0.1",
   "main": "false",
   "author": "Red Hat, Inc.",

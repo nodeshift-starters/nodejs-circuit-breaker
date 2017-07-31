@@ -41,8 +41,6 @@ app.get('/api/name-service-host', (request, response) => {
   response.send({host: nameServiceHost});
 });
 
-app.get('/api/health', (request, response) => {
-  circuit.opened ? response.status(500).send('Circuit down') : response.send('OK');
-});
+app.get('/api/health', (request, response) => response.send('OK'));
 
 module.exports = app;

@@ -49,9 +49,6 @@ app.put('/api/state', (request, response) => {
 app.get('/api/info',
   (request, response) => response.send({ state: isOn ? 'ok' : 'fail' }));
 
-app.get('/api/health', (request, response) => {
-    isOn ? response.send('OK') : response.status(500).send('Name service down');
-  });
-
+app.get('/api/health', (request, response) => response.send('OK'));
 
 module.exports = app;

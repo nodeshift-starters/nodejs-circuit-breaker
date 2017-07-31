@@ -33,14 +33,12 @@ app.use(cors());
 
 // name service API
 app.get('/api/name', (request, response) => {
-  console.log('getting name');
   isOn ? response.send('World') : response.status(500).send('Name service down');
   app.sendMessage(`${new Date()} ${isOn ? 'OK' : 'FAIL'}`);
 });
 
 // current state of service
 app.put('/api/state', (request, response) => {
-  console.log('getting state');
   isOn = request.body.state === 'ok';
   response.send({state: isOn});
   app.update();

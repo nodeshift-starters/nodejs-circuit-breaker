@@ -55,11 +55,16 @@ enabling traffic to reach the remote service again.
 * Smaller-than-necessary timeout values may introduce false positives.
 
 ## Running The Booster
-You can execute this booster on your local host by simply typing `./launch.sh`
-on the command line. To shutdown, type `./shutdown.sh`.
 
-TODO: Add instructions for launching on minishift
-TODO: Add instructions for launching on openshift
+This booster will run on a local [minishift](https://github.com/minishift/minishift/releases)
+installation. Minishift should be started, and you should have a currently
+active project.
+
+```sh
+minishift start # You may have some options here, e.g. --memory=8096 --vm-driver=virtualbox
+oc new-project circuit-breaker-booster # Create a project to deploy to
+./launch.sh # Launch the booster app
+```
 
 ## Further Reading
 * [microservices.io: Microservice Patterns: Circuit Breaker](http://microservices.io/patterns/reliability/circuit-breaker.html)

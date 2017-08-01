@@ -15,3 +15,5 @@ PORT=8081 ./name-service/bin/www &
 echo $! > name-service.pid
 sleep 3
 echo 'To stop the servers, run "./shutdown-localhost.sh"'
+
+open http://localhost:8080

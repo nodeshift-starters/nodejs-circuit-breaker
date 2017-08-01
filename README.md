@@ -56,15 +56,44 @@ enabling traffic to reach the remote service again.
 
 ## Running The Booster
 
-This booster will run on a local [minishift](https://github.com/minishift/minishift/releases)
-installation. Minishift should be started, and you should have a currently
-active project.
+You can run this booster as node processes on your localhost, as pods on a local
+[minishift](https://github.com/minishift/minishift/releases) installation, or
+as part of a project in OpenShift Online V3.
+
+### Localhost
+
+To run the basic application on your local machine, just run the
+`start-localhost.sh` script.
+
+```
+$ ./start-localhost.sh
+```
+
+This will launch the greeting service on port 8080 and the name
+service on port 8081. To kill the servers, run `./shutdown-localhost.sh`.
+
+### Minishift
+
+Minishift should be started, and you should be logged in with a currently
+active project. Then run the `./start-openshift.sh` script.
 
 ```sh
-minishift start # You may have some options here, e.g. --memory=8096 --vm-driver=virtualbox
-oc new-project circuit-breaker-booster # Create a project to deploy to
-./launch.sh # Launch the booster app
+$ minishift start # You may have some options here, e.g. --memory=8096 --vm-driver=virtualbox
+$ oc login -u developer # Login
+$ oc new-project circuit-breaker-booster # Create a project to deploy to
+$ ./start-openshift.sh # Launch the booster app
 ```
+
+### OpenShift Online V3
+
+To launch this as a project on OpenShift Online V3, you just need to supply the
+OpenShift host when logging in, and then run `./start-openshift.sh`.
+
+```sh
+$ oc login [OPENSHIFT_URL] -u [OPENSHIFT_USER]
+$ ./start-openshift.sh
+```
+
 
 ## Further Reading
 * [microservices.io: Microservice Patterns: Circuit Breaker](http://microservices.io/patterns/reliability/circuit-breaker.html)

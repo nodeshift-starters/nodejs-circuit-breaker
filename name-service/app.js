@@ -1,4 +1,3 @@
-'use strict';
 /*
  *
  *  Copyright 2016-2017 Red Hat, Inc, and individual contributors.
@@ -16,6 +15,8 @@
  *  limitations under the License.
  *
  */
+'use strict';
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');

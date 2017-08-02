@@ -1,4 +1,3 @@
-'use strict';
 /*
  *
  *  Copyright 2016-2017 Red Hat, Inc, and individual contributors.
@@ -16,6 +15,7 @@
  *  limitations under the License.
  *
  */
+'use strict';
 const expressWs = require('express-ws');
 
 module.exports = exports = (app, state) => {

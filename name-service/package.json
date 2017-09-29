@@ -47,9 +47,9 @@
   "description": "",
   "keywords": [],
   "dependencies": {
-    "body-parser": "~1.17.2",
+    "body-parser": "^1.18.2",
     "cors": "~2.8.4",
-    "express": "~4.15.3",
+    "express": "^4.16.0",
     "express-ws": "~3.0.0"
   }
 }

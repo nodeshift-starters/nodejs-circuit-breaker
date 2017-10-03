@@ -97,6 +97,7 @@ objects:
   metadata:
     name: nodejs-circuit-breaker-name
     labels:
+      app: nodejs-circuit-breaker-name
       provider: nodeshift
       project: nodejs-circuit-breaker-name
       version: 0.0.1
@@ -126,11 +127,13 @@ objects:
                 protocol: TCP
       metadata:
         labels:
+          app: nodejs-circuit-breaker-name
           project: nodejs-circuit-breaker-name
           provider: nodeshift
           version: 0.0.1
     replicas: 1
     selector:
+      app: nodejs-circuit-breaker-name
       project: nodejs-circuit-breaker-name
       provider: nodeshift
     triggers:

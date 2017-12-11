@@ -27,7 +27,7 @@ const app = require('./lib/web-socket')(express(), _ => isOn);
 
 // send and receive json
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // CORS support
 app.use(cors());

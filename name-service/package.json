@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "test": "tape test/*.js | tap-spec",
-    "lint": "eslint test/*.js index.js",
+    "lint": "eslint test/*.js lib/*.js bin/* app.js",
     "prepare": "nsp check",
     "coverage": "istanbul cover tape test/*.js",
     "dependencyCheck": "szero . --ci",

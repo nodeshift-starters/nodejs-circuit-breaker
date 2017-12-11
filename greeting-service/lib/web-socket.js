@@ -32,5 +32,4 @@ module.exports = exports = (app, circuit) => {
   circuit.on('halfOpen', update);
   circuit.on('close', update);
   return app;
-}
-
+};

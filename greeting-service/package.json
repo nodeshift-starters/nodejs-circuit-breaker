@@ -5,7 +5,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "test": "tape test/*.js | tap-spec",
-    "lint": "eslint test/*.js index.js",
+    "lint": "eslint test/*.js app.js bin/* lib/*.js",
     "prepare": "nsp check",
     "coverage": "nyc npm test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",

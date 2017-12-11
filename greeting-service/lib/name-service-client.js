@@ -27,4 +27,4 @@ module.exports = exports = function nameService (endpoint) {
     })
     .catch(reject);
   });
-}
+};

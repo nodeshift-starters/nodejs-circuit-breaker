@@ -28,7 +28,7 @@ const circuitOptions = {
   timeout: 3000, // If name service takes longer than .3 seconds, trigger a failure
   errorThresholdPercentage: 50, // When 50% of requests fail, trip the circuit
   resetTimeout: 10000 // After 10 seconds, try again.
-}
+};
 
 // Use a circuit breaker for the name service
 const circuit = opossum(nameService, circuitOptions);
@@ -52,7 +52,7 @@ app.get('/api/greeting', (request, response) => {
 
 // circuit breaker state API
 app.get('/api/cb-state', (request, response) => {
-  response.send({state: circuit.opened ? "open" : "closed"});
+  response.send({state: circuit.opened ? 'open' : 'closed'});
 });
 
 app.get('/api/name-service-host', (request, response) => {

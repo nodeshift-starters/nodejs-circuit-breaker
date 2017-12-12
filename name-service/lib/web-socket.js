@@ -18,7 +18,7 @@
 'use strict';
 const WebSocket = require('ws');
 
-module.exports = exports = (server, app, state) => {
+module.exports = exports = (server, state) => {
   const ws = new WebSocket.Server({
     server,
     path: '/name-ws',
@@ -28,9 +28,12 @@ module.exports = exports = (server, app, state) => {
   const serviceState = _ => `state:${state()}`;
   ws.on('connection', socket => socket.send(serviceState()));
 
-  app.update = _ => ws.clients.forEach(ws => ws.send(serviceState()));
-  app.sendMessage = (msg) => ws.clients.forEach(ws => ws.send(msg));
+  const update = _ => ws.clients.forEach(ws => ws.send(serviceState()));
+  const sendMessage = (msg) => ws.clients.forEach(ws => ws.send(msg));
 
-  return app;
+  return {
+    update,
+    sendMessage
+  };
 };
 

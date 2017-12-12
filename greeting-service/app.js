@@ -37,7 +37,7 @@ const circuit = opossum(nameService, circuitOptions);
 circuit.fallback(_ => 'Fallback');
 
 // Create the app with an initial websocket endpoint
-require('./lib/web-socket')(server, app, circuit);
+require('./lib/web-socket')(server, circuit);
 
 // serve index.html from the file system
 app.use(express.static(path.join(__dirname, 'public')));

@@ -19,7 +19,7 @@
 
 const WebSocket = require('ws');
 
-module.exports = exports = (server, app, circuit) => {
+module.exports = exports = (server, circuit) => {
   const ws = new WebSocket.Server({
     server,
     path: '/cb-ws',
@@ -28,12 +28,11 @@ module.exports = exports = (server, app, circuit) => {
 
   const circuitState = _ => `isOpen:${circuit.opened}`;
 
-  const update = _ => ws.clients.forEach(ws => ws.send(circuitState()));
+  const update = _ => ws.clients.forEach(socket => socket.send(circuitState()));
 
   ws.on('connection', socket => socket.send(circuitState()));
 
   circuit.on('open', update);
   circuit.on('halfOpen', update);
   circuit.on('close', update);
-  return app;
 };

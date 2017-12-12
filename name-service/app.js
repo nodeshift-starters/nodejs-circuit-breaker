@@ -24,6 +24,7 @@ const app = express();
 const server = require('http').createServer(app);
 
 let isOn = true;
+const { update, sendMessage } = require('./lib/web-socket')(server, _ => isOn);
 
 // send and receive json
 app.use(bodyParser.json());
@@ -35,21 +36,19 @@ app.use(cors());
 // name service API
 app.get('/api/name', (request, response) => {
   isOn ? response.send('World') : response.status(500).send('Name service down');
-  app.sendMessage(`${new Date()} ${isOn ? 'OK' : 'FAIL'}`);
+  sendMessage(`${new Date()} ${isOn ? 'OK' : 'FAIL'}`);
 });
 
 // current state of service
 app.put('/api/state', (request, response) => {
   isOn = request.body.state === 'ok';
   response.send({state: isOn});
-  app.update();
+  update();
 });
 
 app.get('/api/info',
   (request, response) => response.send({ state: isOn ? 'ok' : 'fail' }));
 
 app.get('/api/health', (request, response) => response.send('OK'));
-
-require('./lib/web-socket')(server, app, _ => isOn);
 
 module.exports = server;

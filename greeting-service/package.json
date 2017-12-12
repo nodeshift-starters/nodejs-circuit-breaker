@@ -5,7 +5,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "test": "tape test/*.js | tap-spec",
-    "lint": "eslint test/*.js index.js",
+    "lint": "eslint test/*.js app.js bin/* lib/*.js",
     "prepare": "nsp check",
     "coverage": "nyc npm test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
@@ -58,8 +58,8 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.0",
-    "express-ws": "~3.0.0",
     "opossum": "~1.2.1",
-    "roi": "~0.15.0"
+    "roi": "~0.15.0",
+    "ws": "~3.3.2"
   }
 }

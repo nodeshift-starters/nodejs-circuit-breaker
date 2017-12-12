@@ -17,20 +17,22 @@
  */
 'use strict';
 
-const expressWs = require('express-ws');
+const WebSocket = require('ws');
 
-module.exports = exports = (app, circuit) => {
-  const wsInstance = expressWs(app);
-  const circuitState = _ => `isOpen:${circuit.opened}`;
-  const update = _ => wsInstance.getWss().clients.forEach(ws => ws.send(circuitState()));
-
-  app.ws('/cb-ws', (ws, req) => {
-    ws.send(circuitState());
+module.exports = exports = (server, circuit) => {
+  const ws = new WebSocket.Server({
+    server,
+    path: '/cb-ws',
+    clientTracking: true
   });
+
+  const circuitState = _ => `isOpen:${circuit.opened}`;
+
+  const update = _ => ws.clients.forEach(socket => socket.send(circuitState()));
+
+  ws.on('connection', socket => socket.send(circuitState()));
 
   circuit.on('open', update);
   circuit.on('halfOpen', update);
   circuit.on('close', update);
-  return app;
-}
-
+};

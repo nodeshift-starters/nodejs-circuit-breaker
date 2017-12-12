@@ -20,14 +20,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const app = express();
+const server = require('http').createServer(app);
 
 let isOn = true;
-
-const app = require('./lib/web-socket')(express(), _ => isOn);
+const { update, sendMessage } = require('./lib/web-socket')(server, _ => isOn);
 
 // send and receive json
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // CORS support
 app.use(cors());
@@ -35,14 +36,14 @@ app.use(cors());
 // name service API
 app.get('/api/name', (request, response) => {
   isOn ? response.send('World') : response.status(500).send('Name service down');
-  app.sendMessage(`${new Date()} ${isOn ? 'OK' : 'FAIL'}`);
+  sendMessage(`${new Date()} ${isOn ? 'OK' : 'FAIL'}`);
 });
 
 // current state of service
 app.put('/api/state', (request, response) => {
   isOn = request.body.state === 'ok';
   response.send({state: isOn});
-  app.update();
+  update();
 });
 
 app.get('/api/info',
@@ -50,4 +51,4 @@ app.get('/api/info',
 
 app.get('/api/health', (request, response) => response.send('OK'));
 
-module.exports = app;
+module.exports = server;

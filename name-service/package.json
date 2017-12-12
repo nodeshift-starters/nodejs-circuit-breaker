@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "test": "tape test/*.js | tap-spec",
-    "lint": "eslint test/*.js index.js",
+    "lint": "eslint test/*.js lib/*.js bin/* app.js",
     "prepare": "nsp check",
     "coverage": "istanbul cover tape test/*.js",
     "dependencyCheck": "szero . --ci",
@@ -50,6 +50,6 @@
     "body-parser": "^1.18.2",
     "cors": "~2.8.4",
     "express": "^4.16.0",
-    "express-ws": "~3.0.0"
+    "ws": "~3.3.2"
   }
 }

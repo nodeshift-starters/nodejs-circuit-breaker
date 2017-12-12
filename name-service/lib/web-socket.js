@@ -16,20 +16,24 @@
  *
  */
 'use strict';
-const expressWs = require('express-ws');
+const WebSocket = require('ws');
 
-module.exports = exports = (app, state) => {
-  const wsInstance = expressWs(app);
+module.exports = exports = (server, state) => {
+  const ws = new WebSocket.Server({
+    server,
+    path: '/name-ws',
+    clientTracking: true
+  });
+
   const serviceState = _ => `state:${state()}`;
+  ws.on('connection', socket => socket.send(serviceState()));
 
-  app.ws('/name-ws', (ws, req) => ws.send(serviceState()));
+  const update = _ => ws.clients.forEach(ws => ws.send(serviceState()));
+  const sendMessage = (msg) => ws.clients.forEach(ws => ws.send(msg));
 
-  app.update = _ => wsInstance.getWss()
-    .clients.forEach(ws => ws.send(serviceState()));
-
-  app.sendMessage = (msg) => wsInstance.getWss()
-    .clients.forEach(ws => ws.send(msg));
-
-  return app;
-}
+  return {
+    update,
+    sendMessage
+  };
+};
 

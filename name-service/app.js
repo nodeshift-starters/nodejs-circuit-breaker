@@ -20,8 +20,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const probe = require('kube-probe');
 const app = express();
 const server = require('http').createServer(app);
+
+// adds basic health-check endpoints
+probe(app);
 
 let isOn = true;
 const { update, sendMessage } = require('./lib/web-socket')(server, _ => isOn);
@@ -48,7 +52,5 @@ app.put('/api/state', (request, response) => {
 
 app.get('/api/info',
   (request, response) => response.send({ state: isOn ? 'ok' : 'fail' }));
-
-app.get('/api/health', (request, response) => response.send('OK'));
 
 module.exports = server;

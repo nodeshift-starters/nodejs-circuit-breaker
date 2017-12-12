@@ -12,7 +12,7 @@
     "dependencyCheck": "szero . --ci",
     "release": "standard-version",
     "start": "PORT=8080 node ./bin/www",
-    "openshift": "nodeshift --strictSSL=false --nodeVersion=8.x"
+    "openshift": "nodeshift --strictSSL=false --nodeVersion=8.x --metadata.out=nodeshift-metadata.json"
   },
   "repository": {
     "type": "git",

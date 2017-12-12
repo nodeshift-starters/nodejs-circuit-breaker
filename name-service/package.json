@@ -11,7 +11,7 @@
     "coverage": "istanbul cover tape test/*.js",
     "dependencyCheck": "szero . --ci",
     "release": "standard-version",
-    "openshift": "nodeshift --strictSSL=false --nodeVersion=8.x",
+    "openshift": "nodeshift --strictSSL=false --nodeVersion=8.x --metadata.out=nodeshift-metadata.json",
     "start": "PORT=8080 node ./bin/www"
   },
   "repository": {

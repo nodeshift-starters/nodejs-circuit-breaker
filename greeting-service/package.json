@@ -58,8 +58,8 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.0",
-    "express-ws": "~3.0.0",
     "opossum": "~1.2.1",
-    "roi": "~0.15.0"
+    "roi": "~0.15.0",
+    "ws": "~3.3.2"
   }
 }

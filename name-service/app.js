@@ -20,10 +20,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const app = express();
+const server = require('http').createServer(app);
 
 let isOn = true;
-
-const app = require('./lib/web-socket')(express(), _ => isOn);
 
 // send and receive json
 app.use(bodyParser.json());
@@ -50,4 +50,6 @@ app.get('/api/info',
 
 app.get('/api/health', (request, response) => response.send('OK'));
 
-module.exports = app;
+require('./lib/web-socket')(server, app, _ => isOn);
+
+module.exports = server;

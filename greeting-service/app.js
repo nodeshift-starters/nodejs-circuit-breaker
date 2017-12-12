@@ -21,6 +21,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const opossum = require('opossum');
 const nameService = require('./lib/name-service-client');
+const app = express();
+const server = require('http').createServer(app);
 
 const nameServiceHost = process.env.NAME_SERVICE_HOST || 'http://nodejs-circuit-breaker-name:8080';
 
@@ -35,7 +37,7 @@ const circuit = opossum(nameService, circuitOptions);
 circuit.fallback(_ => 'Fallback');
 
 // Create the app with an initial websocket endpoint
-const app = require('./lib/web-socket')(express(), circuit);
+require('./lib/web-socket')(server, app, circuit);
 
 // serve index.html from the file system
 app.use(express.static(path.join(__dirname, 'public')));
@@ -61,4 +63,4 @@ app.get('/api/name-service-host', (request, response) => {
 
 app.get('/api/health', (request, response) => response.send('OK'));
 
-module.exports = app;
+module.exports = server;

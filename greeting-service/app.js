@@ -21,8 +21,12 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const opossum = require('opossum');
 const nameService = require('./lib/name-service-client');
+const probe = require('kube-probe');
 const app = express();
 const server = require('http').createServer(app);
+
+// add basic health check endpoints
+probe(app);
 
 const nameServiceHost = process.env.NAME_SERVICE_HOST || 'http://nodejs-circuit-breaker-name:8080';
 
@@ -60,7 +64,5 @@ app.get('/api/cb-state', (request, response) => {
 app.get('/api/name-service-host', (request, response) => {
   response.send({host: nameServiceHost});
 });
-
-app.get('/api/health', (request, response) => response.send('OK'));
 
 module.exports = server;

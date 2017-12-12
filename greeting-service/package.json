@@ -12,7 +12,7 @@
     "dependencyCheck": "szero . --ci",
     "release": "standard-version",
     "start": "PORT=8080 node ./bin/www",
-    "openshift": "nodeshift --strictSSL=false --nodeVersion=8.x"
+    "openshift": "nodeshift --strictSSL=false --nodeVersion=8.x --metadata.out=nodeshift-metadata.json"
   },
   "repository": {
     "type": "git",
@@ -58,6 +58,7 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.0",
+    "kube-probe": "~0.1.2",
     "opossum": "~1.2.1",
     "roi": "~0.15.0",
     "ws": "~3.3.2"

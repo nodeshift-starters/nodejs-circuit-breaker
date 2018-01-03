@@ -65,6 +65,7 @@ objects:
         from:
           kind: ImageStreamTag
           name: runtime:latest
+        incremental: true
     triggers:
     - github:
         secret: ${GITHUB_WEBHOOK_SECRET}

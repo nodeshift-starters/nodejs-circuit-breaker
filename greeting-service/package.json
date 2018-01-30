@@ -13,7 +13,8 @@
     "release": "standard-version",
     "start": "PORT=8080 node ./bin/www",
     "prepublish": "license-reporter report",
-    "openshift": "nodeshift --strictSSL=false --nodeVersion=8.x --metadata.out=nodeshift-metadata.json"
+    "openshift": "nodeshift --strictSSL=false --nodeVersion=8.x --metadata.out=nodeshift-metadata.json",
+    "postinstall": "license-reporter report && license-reporter save --xml licenses.xml"
   },
   "repository": {
     "type": "git",
@@ -25,7 +26,8 @@
     "bin",
     "lib",
     "public",
-    "app.js"
+    "app.js",
+    "licenses"
   ],
   "bugs": {
     "url": "https://github.com/bucharest-gold/nodejs-circuit-breaker/issues"

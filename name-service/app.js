@@ -18,6 +18,7 @@
 'use strict';
 
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const probe = require('kube-probe');
@@ -52,5 +53,8 @@ app.put('/api/state', (request, response) => {
 
 app.get('/api/info',
   (request, response) => response.send({ state: isOn ? 'ok' : 'fail' }));
+
+// expose the license.html at http[s]://[host]:[port]/licences/licenses.html
+app.use('/licenses', express.static(path.join(__dirname, 'licenses')));
 
 module.exports = server;

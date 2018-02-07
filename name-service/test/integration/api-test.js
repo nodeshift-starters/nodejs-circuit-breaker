@@ -1,19 +1,16 @@
 'use strict';
 
-const path = require('path');
 const test = require('tape');
 const request = require('supertest');
 const rhoaster = require('./rhoaster');
 
 const testEnvironment = rhoaster({
-  'projectLocation': path.join(__dirname, '..', '..'),
-  'deploymentName': 'nodejs-circuit-breaker-name',
-  'strictSSL': false
+  deploymentName: 'nodejs-circuit-breaker-name'
 });
 
 testEnvironment.deploy()
   .then(runTests)
-  // .then(testEnvironment.undeploy)
+  .then(_ => test.onFinish(testEnvironment.undeploy))
   .catch(console.error);
 
 function runTests (route) {

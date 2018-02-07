@@ -1,5 +1,6 @@
 npm-debug.log
 node_modules
+nodeshift-metadata.json
 *.pid
 tmp
 nodeshift-metadata.json

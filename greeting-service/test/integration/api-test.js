@@ -5,7 +5,7 @@ const request = require('supertest');
 const rhoaster = require('rhoaster');
 
 const testEnvironment = rhoaster({
-  deploymentName: 'nodejs-circuit-breaker-name'
+  deploymentName: 'nodejs-circuit-breaker-greeting'
 });
 
 testEnvironment.deploy()
@@ -34,34 +34,20 @@ function runTests (route) {
     .expect(200)
     // .expect('Content-Type', /text\/html/)
     .then(response => {
-      console.log(response);
       t.equal(response.text, 'OK');
     })
     .then(_ => t.end())
     .catch(t.fail);
   });
 
-  test('/api/info', t => {
+  test('/api/greeting', t => {
     t.plan(1);
     request(route)
-    .get('/api/info')
+    .get('/api/greeting')
     .expect(200)
     .expect('Content-Type', /json/)
     .then(response => {
-      t.equal(response.body.state, 'ok');
-    })
-    .then(_ => t.end())
-    .catch(t.fail);
-  });
-
-  test('/api/name', t => {
-    t.plan(1);
-    request(route)
-    .get('/api/name')
-    .expect(200)
-    .expect('Content-Type', /text\/html/)
-    .then(response => {
-      t.equal(response.text, 'World');
+      t.equal(response.body.content, 'Hello, Fallback');
     })
     .then(_ => t.end())
     .catch(t.fail);

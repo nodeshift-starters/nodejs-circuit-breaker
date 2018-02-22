@@ -16,4 +16,8 @@ echo $! > name-service.pid
 sleep 3
 echo 'To stop the servers, run "./shutdown-localhost.sh"'
 
-open http://localhost:8080
+case "$OSTYPE" in
+  darwin*)  open http://localhost:8080 ;;
+  linux*)   xdg-open http://localhost:8080 ;;
+  *)        echo "unknown: $OSTYPE" ;;
+esac

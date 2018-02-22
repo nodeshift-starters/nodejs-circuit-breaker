@@ -7,7 +7,8 @@
   "scripts": {
     "test": "tape test/*.js | tap-spec",
     "lint": "eslint test/*.js lib/*.js bin/* app.js",
-    "prepare": "nsp check",
+    "prepare": "echo 'To confirm CVE compliance, run \"npm run security-check\"' ",
+    "security-check": "nsp check",
     "coverage": "istanbul cover tape test/*.js",
     "dependencyCheck": "szero . --ci",
     "release": "standard-version",

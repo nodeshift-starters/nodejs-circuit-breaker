@@ -1,6 +1,6 @@
 {
   "name": "nodejs-circuit-breaker-name",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "false",
   "author": "Red Hat, Inc.",
   "license": "Apache-2.0",

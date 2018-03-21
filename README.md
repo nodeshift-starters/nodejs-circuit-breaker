@@ -1,5 +1,7 @@
 # Circuit Breaker Mission - Node.js Booster
 
+[![Build Status](https://travis-ci.org/bucharest-gold/nodejs-circuit-breaker.svg?branch=master)](https://travis-ci.org/bucharest-gold/nodejs-circuit-breaker)
+
 The Circuit Breaker Mission demonstrates a generic pattern for reporting the
 failure of a service and then limiting access to the failed service until it
 becomes available to handle requests. This helps prevent cascading failure in

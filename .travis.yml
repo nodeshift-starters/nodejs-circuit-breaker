@@ -15,4 +15,4 @@ before_script:
 script:
   - oc cluster up
   - sleep 10
-  - deploy-openshift-ci.sh
+  - ./deploy-openshift-ci.sh

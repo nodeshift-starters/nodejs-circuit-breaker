@@ -2,8 +2,8 @@
 
 cd greeting-service
 npm install
-npm run openshift
+npm test
 
 cd ../name-service
 npm install
-npm run openshift
+npm test

@@ -16,3 +16,5 @@ script:
   - oc cluster up
   - sleep 10
   - ./deploy-openshift-ci.sh
+notifications:
+  irc: "chat.freenode.net#bucharest-gold"

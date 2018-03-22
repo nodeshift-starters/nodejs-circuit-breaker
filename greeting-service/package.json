@@ -4,7 +4,7 @@
   "author": "Red Hat, Inc.",
   "license": "Apache-2.0",
   "scripts": {
-    "test": "tape test/*.js | tap-spec",
+    "test": "tape test/integration/*.js | tap-spec",
     "lint": "eslint test/*.js app.js bin/* lib/*.js",
     "prepare": "echo 'To confirm CVE compliance, run \"npm run security-check\"' ",
     "security-check": "nsp check",
@@ -44,6 +44,8 @@
     "nodeshift": "~1.5.1",
     "nsp": "~2.6.2",
     "nyc": "~11.0.3",
+    "rhoaster": "^0.2.0",
+    "supertest": "^3.0.0",
     "szero": "^0.7.1",
     "tap-spec": "~4.1.1",
     "tape": "~4.6.2"

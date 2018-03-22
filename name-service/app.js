@@ -40,7 +40,7 @@ app.use(cors());
 
 // name service API
 app.get('/api/name', (request, response) => {
-  isOn ? response.send('World') : response.status(500).send('Name service down');
+  isOn ? response.send('World!') : response.status(500).send('Name service down');
   sendMessage(`${new Date()} ${isOn ? 'OK' : 'FAIL'}`);
 });
 
@@ -54,7 +54,7 @@ app.put('/api/state', (request, response) => {
 app.get('/api/info',
   (request, response) => response.send({ state: isOn ? 'ok' : 'fail' }));
 
-// expose the license.html at http[s]://[host]:[port]/licences/licenses.html
+// expose the license.html at http[s]://[host]:[port]/licenses/licenses.html
 app.use('/licenses', express.static(path.join(__dirname, 'licenses')));
 
 module.exports = server;

@@ -11,9 +11,9 @@
     "security-check": "nsp check",
     "coverage": "istanbul cover tape test/*.js",
     "dependencyCheck": "szero . --ci",
-    "prepublish": "license-reporter report",
+    "prepublish": "license-reporter report -s",
     "openshift": "nodeshift --strictSSL=false --nodeVersion=8.x --metadata.out=nodeshift-metadata.json",
-    "postinstall": "license-reporter report && license-reporter save --xml licenses.xml",
+    "postinstall": "license-reporter report -s && license-reporter save -s --xml licenses.xml",
     "start": "PORT=8080 node ./bin/www"
   },
   "repository": {
@@ -53,9 +53,9 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "cors": "~2.8.4",
-    "express": "^4.16.0",
+    "express": "4.16.0",
     "kube-probe": "~0.1.2",
-    "license-reporter": "^1.1.3",
+    "license-reporter": "^1.2.0",
     "ws": "~3.3.2"
   }
 }

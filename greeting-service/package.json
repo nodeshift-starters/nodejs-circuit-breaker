@@ -11,11 +11,12 @@
     "coverage": "nyc npm test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "dependencyCheck": "szero . --ci",
-    "start": "PORT=8080 node ./bin/www",
+    "start": "node .",
     "prepublish": "license-reporter report -s",
     "openshift": "nodeshift --strictSSL=false --nodeVersion=8.x --metadata.out=nodeshift-metadata.json",
     "postinstall": "license-reporter report -s && license-reporter save -s --xml licenses.xml"
   },
+  "main": "./bin/www",
   "repository": {
     "type": "git",
     "url": "git://github.com/bucharest-gold/nodejs-circuit-breaker.git"

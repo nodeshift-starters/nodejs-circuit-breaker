@@ -17,34 +17,40 @@
  */
 'use strict';
 
-const express = require('express');
 const path = require('path');
+const http = require('http');
+const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const probe = require('kube-probe');
-const app = express();
-const server = require('http').createServer(app);
 
-// adds basic health-check endpoints
+const app = express();
+const server = http.createServer(app);
+
+// Adds basic health-check endpoints
 probe(app);
 
 let isOn = true;
-const { update, sendMessage } = require('./lib/web-socket')(server, _ => isOn);
+const {update, sendMessage} = require('./lib/web-socket')(server, _ => isOn);
 
-// send and receive json
+// Send and receive json
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 
 // CORS support
 app.use(cors());
 
-// name service API
+// Name service API
 app.get('/api/name', (request, response) => {
-  isOn ? response.send('World!') : response.status(500).send('Name service down');
+  if (isOn) {
+    response.send('World!');
+  } else {
+    response.status(500).send('Name service down');
+  }
   sendMessage(`${new Date()} ${isOn ? 'OK' : 'FAIL'}`);
 });
 
-// current state of service
+// Current state of service
 app.put('/api/state', (request, response) => {
   isOn = request.body.state === 'ok';
   response.send({state: isOn});
@@ -52,9 +58,9 @@ app.put('/api/state', (request, response) => {
 });
 
 app.get('/api/info',
-  (request, response) => response.send({ state: isOn ? 'ok' : 'fail' }));
+  (request, response) => response.send({state: isOn ? 'ok' : 'fail'}));
 
-// expose the license.html at http[s]://[host]:[port]/licenses/licenses.html
+// Expose the license.html at http[s]://[host]:[port]/licenses/licenses.html
 app.use('/licenses', express.static(path.join(__dirname, 'licenses')));
 
 module.exports = server;

@@ -5,7 +5,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "test": "tape test/integration/*.js | tap-spec",
-    "lint": "eslint test/*.js lib/*.js bin/* app.js",
+    "lint": "xo",
     "prepare": "echo 'To confirm CVE compliance, run \"npm run security-check\"' ",
     "security-check": "nsp check",
     "coverage": "istanbul cover tape test/*.js",
@@ -16,6 +16,15 @@
     "start": "node ."
   },
   "main": "./bin/www",
+  "xo": {
+    "space": 2,
+    "rules": {
+      "space-before-function-paren": [
+        "error",
+        "always"
+      ]
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/bucharest-gold/nodejs-circuit-breaker.git"
@@ -33,12 +42,6 @@
   },
   "homepage": "https://github.com/bucharest-gold/nodejs-circuit-breaker",
   "devDependencies": {
-    "eslint": "~3.8.1",
-    "eslint-config-semistandard": "~7.0.0",
-    "eslint-config-standard": "~6.2.0",
-    "eslint-plugin-promise": "~3.3.0",
-    "eslint-plugin-react": "~6.4.1",
-    "eslint-plugin-standard": "~2.0.1",
     "istanbul": "~0.4.5",
     "nodeshift": "~1.7.1",
     "nsp": "~2.6.2",
@@ -46,7 +49,8 @@
     "supertest": "^3.0.0",
     "szero": "^0.7.1",
     "tap-spec": "~4.1.1",
-    "tape": "~4.6.2"
+    "tape": "~4.6.2",
+    "xo": "~0.20.3"
   },
   "description": "",
   "keywords": [],

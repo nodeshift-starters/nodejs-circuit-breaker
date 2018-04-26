@@ -16,16 +16,18 @@
  *
  */
 'use strict';
-const express = require('express');
 const path = require('path');
+const http = require('http');
+const express = require('express');
 const bodyParser = require('body-parser');
 const opossum = require('opossum');
-const nameService = require('./lib/name-service-client');
 const probe = require('kube-probe');
-const app = express();
-const server = require('http').createServer(app);
+const nameService = require('./lib/name-service-client');
 
-// add basic health check endpoints
+const app = express();
+const server = http.createServer(app);
+
+// Add basic health check endpoints
 probe(app);
 
 const nameServiceHost = process.env.NAME_SERVICE_HOST || 'http://nodejs-circuit-breaker-name:8080';
@@ -43,22 +45,22 @@ circuit.fallback(_ => 'Fallback');
 // Create the app with an initial websocket endpoint
 require('./lib/web-socket')(server, circuit);
 
-// serve index.html from the file system
+// Serve index.html from the file system
 app.use(express.static(path.join(__dirname, 'public')));
-// expose the license.html at http[s]://[host]:[port]/licences/licenses.html
+// Expose the license.html at http[s]://[host]:[port]/licences/licenses.html
 app.use('/licenses', express.static(path.join(__dirname, 'licenses')));
 
-// send and receive json
+// Send and receive json
 app.use(bodyParser.json());
 
-// greeting API
+// Greeting API
 app.get('/api/greeting', (request, response) => {
   circuit.fire(`${nameServiceHost}/api/name`).then(name => {
     response.send({content: `Hello, ${name}`, time: new Date()});
   }).catch(console.error);
 });
 
-// circuit breaker state API
+// Circuit breaker state API
 app.get('/api/cb-state', (request, response) => {
   response.send({state: circuit.opened ? 'open' : 'closed'});
 });

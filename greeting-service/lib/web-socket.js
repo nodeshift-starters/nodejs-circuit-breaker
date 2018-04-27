@@ -19,7 +19,7 @@
 
 const WebSocket = require('ws');
 
-module.exports = exports = (server, circuit) => {
+module.exports = (server, circuit) => {
   const ws = new WebSocket.Server({
     server,
     path: '/cb-ws',

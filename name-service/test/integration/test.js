@@ -5,7 +5,8 @@ const request = require('supertest');
 const rhoaster = require('rhoaster');
 
 const testEnvironment = rhoaster({
-  deploymentName: 'nodejs-circuit-breaker-name'
+  deploymentName: 'nodejs-circuit-breaker-name',
+  nodeVersion: '10.x'
 });
 
 testEnvironment.deploy()

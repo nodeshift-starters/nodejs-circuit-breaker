@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/bucharest-gold/nodejs-circuit-breaker.git"
+    "url": "git://github.com/nodeshift-starters/nodejs-circuit-breaker.git"
   },
   "files": [
     "package.json",
@@ -38,9 +38,9 @@
     "licenses"
   ],
   "bugs": {
-    "url": "https://github.com/bucharest-gold/nodejs-circuit-breaker/issues"
+    "url": "https://github.com/nodeshift-starters/nodejs-circuit-breaker/issues"
   },
-  "homepage": "https://github.com/bucharest-gold/nodejs-circuit-breaker",
+  "homepage": "https://github.com/nodeshift-starters/nodejs-circuit-breaker",
   "devDependencies": {
     "istanbul": "~0.4.5",
     "nodeshift": "~1.7.1",

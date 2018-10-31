@@ -41,7 +41,7 @@ objects:
     - name: latest
       from:
         kind: DockerImage
-        name: 'bucharestgold/centos7-s2i-nodejs:10.x'
+        name: 'nodeshift/centos7-s2i-nodejs:10.x'
 - apiVersion: v1
   kind: BuildConfig
   metadata:

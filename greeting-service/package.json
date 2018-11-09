@@ -45,13 +45,13 @@
   "homepage": "https://github.com/nodeshift-starters/nodejs-circuit-breaker",
   "devDependencies": {
     "istanbul": "~0.4.5",
-    "nodeshift": "~1.7.1",
-    "nsp": "~2.6.2",
-    "nyc": "~11.0.3",
+    "nodeshift": "~2.0.0",
+    "nsp": "~3.2.1",
+    "nyc": "~13.1.0",
     "rhoaster": "^0.2.0",
     "supertest": "^3.0.0",
     "szero": "^0.7.1",
-    "tap-spec": "~4.1.1",
+    "tap-spec": "~5.0.0",
     "tape": "~4.6.2",
     "xo": "~0.20.3"
   },

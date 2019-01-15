@@ -44,7 +44,6 @@
   "devDependencies": {
     "istanbul": "~0.4.5",
     "nodeshift": "~2.0.0",
-    "nsp": "~3.2.1",
     "rhoaster": "^0.2.0",
     "supertest": "^3.0.0",
     "szero": "^0.7.1",

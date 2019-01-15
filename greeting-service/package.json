@@ -6,8 +6,6 @@
   "scripts": {
     "test": "tape test/integration/*.js | tap-spec",
     "lint": "xo",
-    "prepare": "echo 'To confirm CVE compliance, run \"npm run security-check\"' ",
-    "security-check": "nsp check",
     "coverage": "nyc npm test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "dependencyCheck": "szero . --ci",
@@ -46,7 +44,6 @@
   "devDependencies": {
     "istanbul": "~0.4.5",
     "nodeshift": "~2.0.0",
-    "nsp": "~3.2.1",
     "nyc": "~13.1.0",
     "rhoaster": "^0.2.0",
     "supertest": "^3.0.0",

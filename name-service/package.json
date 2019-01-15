@@ -6,8 +6,6 @@
   "scripts": {
     "test": "tape test/integration/*.js | tap-spec",
     "lint": "xo",
-    "prepare": "echo 'To confirm CVE compliance, run \"npm run security-check\"' ",
-    "security-check": "nsp check",
     "coverage": "istanbul cover tape test/*.js",
     "dependencyCheck": "szero . --ci",
     "prepublish": "license-reporter report -s",

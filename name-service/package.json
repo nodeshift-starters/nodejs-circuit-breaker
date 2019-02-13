@@ -41,22 +41,22 @@
   "homepage": "https://github.com/nodeshift-starters/nodejs-circuit-breaker",
   "devDependencies": {
     "istanbul": "~0.4.5",
-    "nodeshift": "~2.0.0",
+    "nodeshift": "~2.1.1",
     "rhoaster": "^0.2.0",
     "supertest": "^3.0.0",
-    "szero": "^0.7.1",
+    "szero": "^1.0.1",
     "tap-spec": "~5.0.0",
-    "tape": "~4.6.2",
-    "xo": "~0.20.3"
+    "tape": "~4.10.0",
+    "xo": "~0.24.0"
   },
   "description": "",
   "keywords": [],
   "dependencies": {
     "body-parser": "^1.18.2",
     "cors": "~2.8.4",
-    "express": "4.16.0",
-    "kube-probe": "~0.1.2",
+    "express": "4.16.4",
+    "kube-probe": "~0.3.1",
     "license-reporter": "^1.2.0",
-    "ws": "~3.3.2"
+    "ws": "~6.1.3"
   }
 }

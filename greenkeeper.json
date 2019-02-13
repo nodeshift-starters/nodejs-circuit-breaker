@@ -1,0 +1,10 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "greeting-service/package.json",
+        "name-service/package.json"
+      ]
+    }
+  }
+}

@@ -25,6 +25,7 @@ module.exports = endpoint => {
         if (response.statusCode !== 200) {
           return reject();
         }
+
         resolve(response.body);
       })
       .catch(reject);

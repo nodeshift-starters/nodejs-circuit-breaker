@@ -47,6 +47,7 @@ app.get('/api/name', (request, response) => {
   } else {
     response.status(500).send('Name service down');
   }
+
   sendMessage(`${new Date()} ${isOn ? 'OK' : 'FAIL'}`);
 });
 

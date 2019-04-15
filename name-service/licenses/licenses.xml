@@ -26,7 +26,7 @@
         </dependency>
         <dependency>
             <packageName>ws</packageName>
-            <version>6.1.3</version>
+            <version>6.2.0</version>
             <licenses>
                 <license>
                     <name>MIT License</name>

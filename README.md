@@ -1,13 +1,13 @@
-# Circuit Breaker Mission - Node.js Booster
+# Circuit Breaker Example - Node.js
 
 [![Build Status](https://travis-ci.org/nodeshift-starters/nodejs-circuit-breaker.svg?branch=master)](https://travis-ci.org/nodeshift-starters/nodejs-circuit-breaker) [![Greenkeeper badge](https://badges.greenkeeper.io/nodeshift-starters/nodejs-circuit-breaker.svg)](https://greenkeeper.io/)
 
-The Circuit Breaker Mission demonstrates a generic pattern for reporting the
+The Circuit Breaker Example demonstrates a generic pattern for reporting the
 failure of a service and then limiting access to the failed service until it
 becomes available to handle requests. This helps prevent cascading failure in
 other services that depend on the failed services for functionality.
 
-This mission shows you how to implement a Circuit Breaker and Fallback pattern
+This example shows you how to implement a Circuit Breaker and Fallback pattern
 in your services.
 
 ## About Circuit Breaker
@@ -56,9 +56,9 @@ enabling traffic to reach the remote service again.
 * Larger-than-necessary timeout values may generate excessive latency.
 * Smaller-than-necessary timeout values may introduce false positives.
 
-## Running The Booster
+## Running The Example
 
-You can run this booster as node processes on your localhost, as pods on a local
+You can run this example as node processes on your localhost, as pods on a local
 [minishift](https://github.com/minishift/minishift/releases) installation, or
 as part of a project in OpenShift Online V3.
 
@@ -82,8 +82,8 @@ active project. Then run the `./start-openshift.sh` script.
 ```sh
 $ minishift start # You may have some options here, e.g. --memory=8096 --vm-driver=virtualbox
 $ oc login -u developer # Login
-$ oc new-project circuit-breaker-booster # Create a project to deploy to
-$ ./start-openshift.sh # Launch the booster app
+$ oc new-project circuit-breaker-example # Create a project to deploy to
+$ ./start-openshift.sh # Launch the example app
 ```
 
 ### OpenShift Online V3

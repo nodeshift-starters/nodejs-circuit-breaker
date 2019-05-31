@@ -9,7 +9,7 @@
     "coverage": "istanbul cover tape test/*.js",
     "dependencyCheck": "szero . --ci",
     "prepublish": "license-reporter report -s",
-    "openshift": "nodeshift --strictSSL=false --imageTag=10.x --metadata.out=nodeshift-metadata.json",
+    "openshift": "nodeshift --strictSSL=false --imageTag=12.x --metadata.out=nodeshift-metadata.json",
     "postinstall": "license-reporter report -s && license-reporter save -s --xml licenses.xml",
     "start": "node ."
   },

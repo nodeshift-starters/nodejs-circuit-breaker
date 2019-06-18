@@ -5,6 +5,16 @@
     <license>Apache-2.0</license>
     <dependencies>
         <dependency>
+            <packageName>axios</packageName>
+            <version>0.19.0</version>
+            <licenses>
+                <license>
+                    <name>MIT License</name>
+                    <url>http://www.opensource.org/licenses/MIT</url>
+                </license>
+            </licenses>
+        </dependency>
+        <dependency>
             <packageName>express</packageName>
             <version>4.16.4</version>
             <licenses>
@@ -27,16 +37,6 @@
         <dependency>
             <packageName>opossum</packageName>
             <version>1.10.1</version>
-            <licenses>
-                <license>
-                    <name>Apache License 2.0</name>
-                    <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-                </license>
-            </licenses>
-        </dependency>
-        <dependency>
-            <packageName>roi</packageName>
-            <version>0.18.0</version>
             <licenses>
                 <license>
                     <name>Apache License 2.0</name>

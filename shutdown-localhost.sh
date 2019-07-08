@@ -2,3 +2,5 @@
 
 kill `cat *.pid`
 rm *.pid
+
+echo "Stopped successfully."

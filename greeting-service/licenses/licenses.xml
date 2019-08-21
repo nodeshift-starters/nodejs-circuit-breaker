@@ -15,8 +15,18 @@
             </licenses>
         </dependency>
         <dependency>
+            <packageName>body-parser</packageName>
+            <version>1.19.0</version>
+            <licenses>
+                <license>
+                    <name>MIT License</name>
+                    <url>http://www.opensource.org/licenses/MIT</url>
+                </license>
+            </licenses>
+        </dependency>
+        <dependency>
             <packageName>express</packageName>
-            <version>4.16.4</version>
+            <version>4.17.1</version>
             <licenses>
                 <license>
                     <name>MIT License</name>
@@ -26,7 +36,17 @@
         </dependency>
         <dependency>
             <packageName>kube-probe</packageName>
-            <version>0.3.1</version>
+            <version>0.3.2</version>
+            <licenses>
+                <license>
+                    <name>Apache License 2.0</name>
+                    <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+                </license>
+            </licenses>
+        </dependency>
+        <dependency>
+            <packageName>license-reporter</packageName>
+            <version>1.2.2</version>
             <licenses>
                 <license>
                     <name>Apache License 2.0</name>
@@ -36,7 +56,7 @@
         </dependency>
         <dependency>
             <packageName>opossum</packageName>
-            <version>1.10.1</version>
+            <version>1.11.1</version>
             <licenses>
                 <license>
                     <name>Apache License 2.0</name>

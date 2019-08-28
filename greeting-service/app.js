@@ -39,7 +39,7 @@ const circuitOptions = {
 };
 
 // Use a circuit breaker for the name service
-const circuit = opossum(nameService, circuitOptions);
+const circuit = new opossum(nameService, circuitOptions);
 circuit.fallback(_ => 'Fallback');
 
 // Create the app with an initial websocket endpoint

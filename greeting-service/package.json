@@ -65,7 +65,7 @@
     "express": "~4.17.1",
     "kube-probe": "~0.3.2",
     "license-reporter": "~1.2.2",
-    "opossum": "~1.11.1",
+    "opossum": "~4.0.0",
     "ws": "~6.2.0"
   }
 }

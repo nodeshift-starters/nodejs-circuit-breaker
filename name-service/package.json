@@ -41,7 +41,7 @@
   "devDependencies": {
     "istanbul": "~0.4.5",
     "nodeshift": "~3.1.1",
-    "rhoaster": "^0.2.0",
+    "rhoaster": "^0.4.0",
     "supertest": "~4.0.2",
     "tap-spec": "~5.0.0",
     "tape": "~4.11.0",

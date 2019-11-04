@@ -42,7 +42,7 @@
   "homepage": "https://github.com/nodeshift-starters/nodejs-circuit-breaker",
   "devDependencies": {
     "istanbul": "~0.4.5",
-    "nodeshift": "~3.1.1",
+    "nodeshift": "~4.0.0",
     "nyc": "~14.1.1",
     "rhoaster": "^0.4.0",
     "supertest": "~4.0.2",

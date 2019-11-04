@@ -44,7 +44,7 @@
     "istanbul": "~0.4.5",
     "nodeshift": "~4.0.0",
     "nyc": "~14.1.1",
-    "rhoaster": "^0.4.0",
+    "rhoaster": "^0.4.1",
     "supertest": "~4.0.2",
     "tap-spec": "~5.0.0",
     "tape": "~4.11.0",

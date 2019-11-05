@@ -8,7 +8,7 @@
     "lint": "xo",
     "coverage": "istanbul cover tape test/*.js",
     "prepublish": "license-reporter report -s",
-    "openshift": "nodeshift --strictSSL=false --imageTag=10.x --metadata.out=nodeshift-metadata.json",
+    "openshift": "nodeshift --metadata.out=nodeshift-metadata.json",
     "postinstall": "license-reporter report -s && license-reporter save -s --xml licenses.xml",
     "start": "node ."
   },

@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: template.openshift.io/v1
 kind: Template
 metadata:
   name: launchpad-builder
@@ -27,12 +27,12 @@ parameters:
   from: '[a-zA-Z0-9]{40}'
   generate: expression
 objects:
-- apiVersion: v1
+- apiVersion: image.openshift.io/v1
   kind: ImageStream
   metadata:
     name: nodejs-circuit-breaker-greeting
   spec: {}
-- apiVersion: v1
+- apiVersion: image.openshift.io/v1
   kind: ImageStream
   metadata:
     name: runtime
@@ -42,7 +42,7 @@ objects:
       from:
         kind: DockerImage
         name: 'registry.access.redhat.com/ubi8/nodejs-10'
-- apiVersion: v1
+- apiVersion: build.openshift.io/v1
   kind: BuildConfig
   metadata:
     name: nodejs-circuit-breaker-greeting
@@ -93,7 +93,7 @@ objects:
       expose: 'true'
       project: nodejs-circuit-breaker-greeting
       version: 2.1.1
-- apiVersion: v1
+- apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
   metadata:
     name: nodejs-circuit-breaker-greeting
@@ -147,7 +147,7 @@ objects:
           from:
             kind: ImageStreamTag
             name: 'nodejs-circuit-breaker-greeting:latest'
-- apiVersion: v1
+- apiVersion: route.openshift.io/v1
   kind: Route
   spec:
     to:

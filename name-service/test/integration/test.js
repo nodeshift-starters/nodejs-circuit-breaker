@@ -6,7 +6,7 @@ const rhoaster = require('rhoaster');
 
 const testEnvironment = rhoaster({
   deploymentName: 'nodejs-circuit-breaker-name',
-  nodeVersion: '10.x'
+  dockerImage: 'registry.access.redhat.com/ubi8/nodejs-12'
 });
 
 testEnvironment.deploy()

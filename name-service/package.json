@@ -1,6 +1,6 @@
 {
   "name": "nodejs-circuit-breaker-name",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "author": "Red Hat, Inc.",
   "license": "Apache-2.0",
   "scripts": {
@@ -45,7 +45,7 @@
     "supertest": "~4.0.2",
     "tap-spec": "~5.0.0",
     "tape": "~4.11.0",
-    "xo": "~0.24.0"
+    "xo": "~0.25.3"
   },
   "description": "",
   "keywords": [],

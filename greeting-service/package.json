@@ -47,7 +47,7 @@
     "rhoaster": "^0.4.1",
     "supertest": "~4.0.2",
     "tap-spec": "~5.0.0",
-    "tape": "~4.11.0",
+    "tape": "~4.12.0",
     "xo": "~0.25.3"
   },
   "gitHubUser": "lance",
@@ -65,7 +65,7 @@
     "express": "~4.17.1",
     "kube-probe": "~0.3.2",
     "license-reporter": "~1.2.2",
-    "opossum": "~4.2.1",
+    "opossum": "~4.0.0",
     "ws": "~6.2.0"
   }
 }

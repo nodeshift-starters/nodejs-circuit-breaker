@@ -56,21 +56,11 @@
         </dependency>
         <dependency>
             <packageName>opossum</packageName>
-            <version>4.2.1</version>
+            <version>4.0.0</version>
             <licenses>
                 <license>
                     <name>Apache License 2.0</name>
                     <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-                </license>
-            </licenses>
-        </dependency>
-        <dependency>
-            <packageName>ws</packageName>
-            <version>6.2.0</version>
-            <licenses>
-                <license>
-                    <name>MIT License</name>
-                    <url>http://www.opensource.org/licenses/MIT</url>
                 </license>
             </licenses>
         </dependency>

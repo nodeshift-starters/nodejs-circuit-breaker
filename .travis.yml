@@ -1,9 +1,12 @@
 dist: trusty
+
 language: node_js
+
 node_js:
-  - "8"
-  - "10"
+  - 10
+
 sudo: required
+
 before_script:
   - sudo mount --make-shared /
   - sudo service docker stop
@@ -13,9 +16,8 @@ before_script:
   - tar xvzOf openshift-origin-client-tools-v3.9.0-alpha.3-78ddc10-linux-64bit.tar.gz > oc.bin
   - sudo mv oc.bin /usr/bin/oc
   - sudo chmod 755 /usr/bin/oc
+
 script:
   - oc cluster up
   - sleep 10
   - ./deploy-openshift-ci.sh
-notifications:
-  irc: "chat.freenode.net#bucharest-gold"

@@ -42,12 +42,12 @@
   "homepage": "https://github.com/nodeshift-starters/nodejs-circuit-breaker",
   "devDependencies": {
     "istanbul": "~0.4.5",
-    "nodeshift": "~4.1.0",
+    "nodeshift": "~6.0.1",
     "nyc": "~14.1.1",
     "rhoaster": "^0.4.1",
     "supertest": "~4.0.2",
     "tap-spec": "~5.0.0",
-    "tape": "~4.12.0",
+    "tape": "~4.13.2",
     "xo": "~0.25.3"
   },
   "gitHubUser": "lance",
@@ -60,10 +60,10 @@
     "resiliency"
   ],
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.19.2",
     "body-parser": "~1.19.0",
     "express": "~4.17.1",
-    "kube-probe": "~0.3.2",
+    "kube-probe": "~0.4.0",
     "license-reporter": "~1.2.2",
     "opossum": "~4.0.0",
     "ws": "~6.2.0"

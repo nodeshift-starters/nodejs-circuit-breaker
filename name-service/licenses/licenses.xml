@@ -26,7 +26,7 @@
         </dependency>
         <dependency>
             <packageName>kube-probe</packageName>
-            <version>0.3.2</version>
+            <version>0.4.0</version>
             <licenses>
                 <license>
                     <name>Apache License 2.0</name>

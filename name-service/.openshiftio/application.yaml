@@ -92,7 +92,7 @@ objects:
       provider: nodeshift
       expose: 'true'
       project: nodejs-circuit-breaker-name
-      version: 2.1.2
+      version: 2.1.3
       'app.openshift.io/runtime': 'nodejs'
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
@@ -102,7 +102,7 @@ objects:
       app: nodejs-circuit-breaker-name
       provider: nodeshift
       project: nodejs-circuit-breaker-name
-      version: 2.1.2
+      version: 2.1.3
       'app.openshift.io/runtime': 'nodejs'
   spec:
     template:
@@ -133,7 +133,7 @@ objects:
           app: nodejs-circuit-breaker-name
           project: nodejs-circuit-breaker-name
           provider: nodeshift
-          version: 2.1.2
+          version: 2.1.3
     replicas: 1
     selector:
       app: nodejs-circuit-breaker-name
@@ -162,5 +162,5 @@ objects:
     labels:
       provider: nodeshift
       project: nodejs-circuit-breaker-name
-      version: 2.1.2
+      version: 2.1.3
       'app.openshift.io/runtime': 'nodejs'

@@ -1,6 +1,6 @@
 {
   "name": "nodejs-circuit-breaker-greeting",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "author": "Red Hat, Inc.",
   "license": "Apache-2.0",
   "scripts": {

@@ -9,9 +9,10 @@
     "coverage": "nyc npm test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "start": "node .",
-    "prepublish": "license-reporter report -s",
+    "prepublish": "npm run snyk-protect && license-reporter report -s",
     "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-12 --metadata.out=nodeshift-metadata.json",
-    "postinstall": "license-reporter report -s && license-reporter save -s --xml licenses.xml"
+    "postinstall": "license-reporter report -s && license-reporter save -s --xml licenses.xml",
+    "snyk-protect": "snyk protect"
   },
   "main": "./bin/www",
   "xo": {
@@ -66,6 +67,8 @@
     "kube-probe": "~0.4.0",
     "license-reporter": "~1.2.2",
     "opossum": "~4.0.0",
-    "ws": "~6.2.0"
-  }
+    "ws": "~6.2.0",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }

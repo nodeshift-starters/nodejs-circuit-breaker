@@ -1,0 +1,32 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - nodeshift > lodash:
+        patched: '2020-05-01T01:18:32.633Z'
+    - tap-spec > lodash:
+        patched: '2020-05-01T01:18:32.633Z'
+    - rhoaster > nodeshift > lodash:
+        patched: '2020-05-01T01:18:32.633Z'
+    - xo > eslint > lodash:
+        patched: '2020-05-01T01:18:32.633Z'
+    - xo > eslint > inquirer > lodash:
+        patched: '2020-05-01T01:18:32.633Z'
+    - xo > eslint > table > lodash:
+        patched: '2020-05-01T01:18:32.633Z'
+    - xo > eslint-plugin-ava > enhance-visitors > lodash:
+        patched: '2020-05-01T01:18:32.633Z'
+    - nodeshift > openshift-rest-client > kubernetes-client > openid-client > lodash:
+        patched: '2020-05-01T01:18:32.633Z'
+    - rhoaster > openshift-rest-client > kubernetes-client > openid-client > lodash:
+        patched: '2020-05-01T01:18:32.633Z'
+    - nodeshift > openshift-rest-client > kubernetes-client > openid-client > node-jose > lodash:
+        patched: '2020-05-01T01:18:32.633Z'
+    - rhoaster > openshift-rest-client > kubernetes-client > openid-client > node-jose > lodash:
+        patched: '2020-05-01T01:18:32.633Z'
+    - rhoaster > nodeshift > openshift-rest-client > kubernetes-client > openid-client > lodash:
+        patched: '2020-05-01T01:18:32.633Z'
+    - rhoaster > nodeshift > openshift-rest-client > kubernetes-client > openid-client > node-jose > lodash:
+        patched: '2020-05-01T01:18:32.633Z'

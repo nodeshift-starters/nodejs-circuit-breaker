@@ -54,7 +54,7 @@
     "cors": "~2.8.4",
     "express": "~4.17.1",
     "kube-probe": "~0.4.0",
-    "license-reporter": "~1.2.2",
+    "license-reporter": "~1.3.0",
     "ws": "~6.2.0"
   }
 }

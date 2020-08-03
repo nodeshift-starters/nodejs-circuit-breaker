@@ -48,7 +48,7 @@
     "supertest": "~4.0.2",
     "tap-spec": "~5.0.0",
     "tape": "~4.13.2",
-    "xo": "~0.25.3"
+    "xo": "^0.32.1"
   },
   "gitHubUser": "lance",
   "description": "demonstrates a generic pattern for reporting the failure of a service and then limiting access to the failed service until it becomes available to handle requests.",

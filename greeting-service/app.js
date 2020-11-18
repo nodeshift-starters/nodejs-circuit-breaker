@@ -20,7 +20,7 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
-const opossum = require('opossum');
+const Opossum = require('opossum');
 const probe = require('kube-probe');
 const nameService = require('./lib/name-service-client');
 
@@ -39,7 +39,7 @@ const circuitOptions = {
 };
 
 // Use a circuit breaker for the name service
-const circuit = new opossum(nameService, circuitOptions);
+const circuit = new Opossum(nameService, circuitOptions);
 circuit.fallback(_ => 'Fallback');
 
 // Create the app with an initial websocket endpoint
@@ -56,17 +56,17 @@ app.use(bodyParser.json());
 // Greeting API
 app.get('/api/greeting', (request, response) => {
   circuit.fire(`${nameServiceHost}/api/name`).then(name => {
-    response.send({content: `Hello, ${name}`, time: new Date()});
+    response.send({ content: `Hello, ${name}`, time: new Date() });
   }).catch(console.error);
 });
 
 // Circuit breaker state API
 app.get('/api/cb-state', (request, response) => {
-  response.send({state: circuit.opened ? 'open' : 'closed'});
+  response.send({ state: circuit.opened ? 'open' : 'closed' });
 });
 
 app.get('/api/name-service-host', (request, response) => {
-  response.send({host: nameServiceHost});
+  response.send({ host: nameServiceHost });
 });
 
 module.exports = server;

@@ -5,7 +5,8 @@
   "license": "Apache-2.0",
   "scripts": {
     "test": "tape test/integration/*.js | tap-spec",
-    "lint": "xo",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "coverage": "istanbul cover tape test/*.js",
     "prepublish": "license-reporter report -s",
     "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-12 --metadata.out=nodeshift-metadata.json",
@@ -13,15 +14,6 @@
     "start": "node ."
   },
   "main": "./bin/www",
-  "xo": {
-    "space": 2,
-    "rules": {
-      "space-before-function-paren": [
-        "error",
-        "always"
-      ]
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/nodeshift-starters/nodejs-circuit-breaker.git"
@@ -39,13 +31,19 @@
   },
   "homepage": "https://github.com/nodeshift-starters/nodejs-circuit-breaker",
   "devDependencies": {
+    "eslint": "^7.13.0",
+    "eslint-config-semistandard": "^15.0.1",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.1.0",
     "istanbul": "~0.4.5",
     "nodeshift": "~6.2.0",
     "rhoaster": "^0.4.1",
     "supertest": "~4.0.2",
     "tap-spec": "~5.0.0",
-    "tape": "~4.13.2",
-    "xo": "^0.32.1"
+    "tape": "~4.13.2"
   },
   "description": "",
   "keywords": [],

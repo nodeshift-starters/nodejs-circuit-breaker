@@ -31,11 +31,11 @@ const server = http.createServer(app);
 probe(app);
 
 let isOn = true;
-const {update, sendMessage} = require('./lib/web-socket')(server, _ => isOn);
+const { update, sendMessage } = require('./lib/web-socket')(server, _ => isOn);
 
 // Send and receive json
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // CORS support
 app.use(cors());
@@ -54,12 +54,12 @@ app.get('/api/name', (request, response) => {
 // Current state of service
 app.put('/api/state', (request, response) => {
   isOn = request.body.state === 'ok';
-  response.send({state: isOn});
+  response.send({ state: isOn });
   update();
 });
 
 app.get('/api/info',
-  (request, response) => response.send({state: isOn ? 'ok' : 'fail'}));
+  (request, response) => response.send({ state: isOn ? 'ok' : 'fail' }));
 
 // Expose the license.html at http[s]://[host]:[port]/licenses/licenses.html
 app.use('/licenses', express.static(path.join(__dirname, 'licenses')));

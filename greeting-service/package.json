@@ -1,6 +1,6 @@
 {
   "name": "nodejs-circuit-breaker-greeting",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "author": "Red Hat, Inc.",
   "license": "Apache-2.0",
   "scripts": {
@@ -11,7 +11,7 @@
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "start": "node .",
     "prepublish": "license-reporter report -s",
-    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-12 --metadata.out=nodeshift-metadata.json",
+    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-14:latest --metadata.out=nodeshift-metadata.json",
     "postinstall": "license-reporter report -s && license-reporter save -s --xml licenses.xml"
   },
   "main": "./bin/www",

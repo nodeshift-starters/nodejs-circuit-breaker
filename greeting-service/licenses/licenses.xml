@@ -6,7 +6,7 @@
     <dependencies>
         <dependency>
             <packageName>axios</packageName>
-            <version>0.19.2</version>
+            <version>0.21.1</version>
             <licenses>
                 <license>
                     <name>MIT License</name>
@@ -36,7 +36,7 @@
         </dependency>
         <dependency>
             <packageName>kube-probe</packageName>
-            <version>0.4.0</version>
+            <version>1.0.2</version>
             <licenses>
                 <license>
                     <name>Apache License 2.0</name>
@@ -56,11 +56,21 @@
         </dependency>
         <dependency>
             <packageName>opossum</packageName>
-            <version>4.0.0</version>
+            <version>6.0.0</version>
             <licenses>
                 <license>
                     <name>Apache License 2.0</name>
                     <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+                </license>
+            </licenses>
+        </dependency>
+        <dependency>
+            <packageName>ws</packageName>
+            <version>7.4.4</version>
+            <licenses>
+                <license>
+                    <name>MIT License</name>
+                    <url>http://www.opensource.org/licenses/MIT</url>
                 </license>
             </licenses>
         </dependency>

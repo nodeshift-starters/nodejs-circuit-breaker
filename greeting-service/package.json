@@ -32,20 +32,19 @@
   },
   "homepage": "https://github.com/nodeshift-starters/nodejs-circuit-breaker",
   "devDependencies": {
-    "eslint": "^7.13.0",
+    "eslint": "^7.24.0",
     "eslint-config-semistandard": "^15.0.1",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.1.0",
+    "eslint-plugin-promise": "^5.1.0",
     "istanbul": "~0.4.5",
-    "nodeshift": "~6.0.2",
-    "nyc": "~14.1.1",
+    "nodeshift": "~8.1.1",
+    "nyc": "~15.1.0",
     "rhoaster": "^0.4.1",
-    "supertest": "~4.0.2",
+    "supertest": "~6.1.3",
     "tap-spec": "~5.0.0",
-    "tape": "~4.13.2"
+    "tape": "~5.2.2"
   },
   "gitHubUser": "lance",
   "description": "demonstrates a generic pattern for reporting the failure of a service and then limiting access to the failed service until it becomes available to handle requests.",
@@ -57,12 +56,12 @@
     "resiliency"
   ],
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "body-parser": "~1.19.0",
     "express": "~4.17.1",
-    "kube-probe": "~0.4.0",
+    "kube-probe": "~1.0.2",
     "license-reporter": "~1.3.0",
-    "opossum": "~4.0.0",
-    "ws": "~6.2.0"
+    "opossum": "~6.0.0",
+    "ws": "~7.4.4"
   }
 }

@@ -4,9 +4,8 @@
   "author": "Red Hat, Inc.",
   "license": "Apache-2.0",
   "scripts": {
+    "pretest": "eslint --ignore-path ../.gitignore .",
     "test": "tape test/integration/*.js | tap-spec",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
     "coverage": "nyc npm test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "start": "node .",

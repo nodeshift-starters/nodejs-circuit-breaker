@@ -4,9 +4,8 @@
   "author": "Red Hat, Inc.",
   "license": "Apache-2.0",
   "scripts": {
+    "pretest": "eslint --ignore-path ../.gitignore .",
     "test": "tape test/integration/*.js | tap-spec",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
     "coverage": "istanbul cover tape test/*.js",
     "prepublish": "license-reporter report -s",
     "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-14:latest --metadata.out=nodeshift-metadata.json",

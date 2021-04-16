@@ -58,9 +58,7 @@ enabling traffic to reach the remote service again.
 
 ## Running The Example
 
-You can run this example as node processes on your localhost, as pods on a local
-[minishift](https://github.com/minishift/minishift/releases) installation, or
-as part of a project in OpenShift Online V3.
+You can run this example as node processes on your localhost or as pods on an Openshift Cluster.  [Code Ready Container](https://developers.redhat.com/products/codeready-containers/overview) can be used to try out Openshift locally.
 
 ### Localhost
 
@@ -74,44 +72,15 @@ $ ./start-localhost.sh
 This will launch the greeting service on port 8080 and the name
 service on port 8081. To kill the servers, run `./shutdown-localhost.sh`.
 
-### Minishift
+### Code Ready Containers
 
-Minishift should be started, and you should be logged in with a currently
+The cluster should be started, and you should be logged in with a currently
 active project. Then run the `./start-openshift.sh` script.
 
 ```sh
-$ minishift start # You may have some options here, e.g. --memory=8096 --vm-driver=virtualbox
-$ oc login -u developer # Login
-$ oc new-project circuit-breaker-example # Create a project to deploy to
+$ oc new-project circuit-breaker-example-redhat # Create a project to deploy to
 $ ./start-openshift.sh # Launch the example app
 ```
-
-This app has an example of integration test using an [integration test tool for Node.js apps on OpenShift](https://github.com/nodeshift/rhoaster)
-
-Once you started your local OpenShift instance you can check it out by  running the following commands: 
-
-```
-npm run test:integration 
-```
-
-It will deploy the app to local OpenShift and run the tests located on `test/integration` directory.
-
-```
-npm run test:integration:undeploy
-```
-
-Performs undeploy of the app inside local OpenShift.
-
-### OpenShift Online V3
-
-To launch this as a project on OpenShift Online V3, you just need to supply the
-OpenShift host when logging in, and then run `./start-openshift.sh`.
-
-```sh
-$ oc login [OPENSHIFT_URL] -u [OPENSHIFT_USER]
-$ ./start-openshift.sh
-```
-
 
 ## Further Reading
 * [microservices.io: Microservice Patterns: Circuit Breaker](http://microservices.io/patterns/reliability/circuit-breaker.html)

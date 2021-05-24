@@ -1,7 +1,8 @@
+/* eslint-disable no-undef */
 'use strict';
 
-const test = require('tape');
-const request = require('supertest');
+const assert = require('assert');
+const supertest = require('supertest');
 const rhoaster = require('rhoaster');
 
 const testEnvironment = rhoaster({
@@ -9,33 +10,31 @@ const testEnvironment = rhoaster({
   dockerImage: 'registry.access.redhat.com/ubi8/nodejs-12'
 });
 
-testEnvironment.deploy()
-  .then(runTests)
-  .then(_ => test.onFinish(testEnvironment.undeploy))
-  .catch(console.error);
+describe('Name service route', () => {
+  let route;
+  before(async function () {
+    this.timeout(0);
+    route = await testEnvironment.deploy();
+  });
 
-function runTests (route) {
-  test('/api/info', t => {
-    t.plan(1);
-    request(route)
+  it('/api/info', async () => {
+    const response = await supertest(route)
       .get('/api/info')
-      .expect(200)
-      .then(response => {
-        t.equal(JSON.parse(response.text).state, 'ok');
-      })
-      .then(_ => t.end())
-      .catch(t.fail);
+      .expect(200);
+
+    assert.strictEqual(JSON.parse(response.text).state, 'ok');
   });
 
-  test('/api/name', t => {
-    t.plan(1);
-    request(route)
+  it('/api/name', async () => {
+    const response = await supertest(route)
       .get('/api/name')
-      .expect(200)
-      .then(response => {
-        t.equal(response.text, 'World!');
-      })
-      .then(_ => t.end())
-      .catch(t.fail);
+      .expect(200);
+
+    assert.strictEqual(response.text, 'World!');
   });
-}
+
+  after(async function () {
+    this.timeout(0);
+    await testEnvironment.undeploy();
+  });
+});

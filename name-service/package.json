@@ -5,7 +5,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "pretest": "eslint --ignore-path ../.gitignore .",
-    "test": "tape test/integration/*.js | tap-spec",
+    "test": "mocha test/integration/*.js",
     "coverage": "istanbul cover tape test/*.js",
     "prepublish": "license-reporter report -s",
     "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-14 --metadata.out=nodeshift-metadata.json",
@@ -37,11 +37,10 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "istanbul": "~0.4.5",
+    "mocha": "^8.4.0",
     "nodeshift": "~8.1.1",
     "rhoaster": "^0.4.1",
-    "supertest": "~6.1.3",
-    "tap-spec": "~5.0.0",
-    "tape": "~5.2.2"
+    "supertest": "~6.1.3"
   },
   "description": "",
   "keywords": [],

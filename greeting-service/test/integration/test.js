@@ -1,7 +1,8 @@
+/* eslint-disable no-undef */
 'use strict';
 
-const test = require('tape');
-const request = require('supertest');
+const assert = require('assert');
+const supertest = require('supertest');
 const rhoaster = require('rhoaster');
 
 const testEnvironment = rhoaster({
@@ -9,20 +10,23 @@ const testEnvironment = rhoaster({
   dockerImage: 'registry.access.redhat.com/ubi8/nodejs-12'
 });
 
-testEnvironment.deploy()
-  .then(runTests)
-  .catch(console.error);
-
-function runTests (route) {
-  test('/api/greeting', t => {
-    t.plan(1);
-    request(route)
-      .get('/api/greeting')
-      .expect(200)
-      .then(response => {
-        t.ok(response.text.includes('Hello, World!'));
-      })
-      .then(_ => t.end())
-      .catch(t.fail);
+describe('Greeting route', () => {
+  let route;
+  before(async function () {
+    this.timeout(0);
+    route = await testEnvironment.deploy();
   });
-}
+
+  it('/api/greeting', async () => {
+    const response = await supertest(route)
+      .get('/api/greeting')
+      .expect(200);
+
+    assert.strictEqual(response.text.includes, 'Hello, World!');
+  });
+
+  after(async function () {
+    this.timeout(0);
+    await testEnvironment.undeploy();
+  });
+});

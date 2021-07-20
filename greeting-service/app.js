@@ -21,14 +21,19 @@ const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const Opossum = require('opossum');
-const probe = require('kube-probe');
 const nameService = require('./lib/name-service-client');
 
 const app = express();
 const server = http.createServer(app);
 
 // Add basic health check endpoints
-probe(app);
+app.use('/ready', (request, response) => {
+  return response.sendStatus(200);
+});
+
+app.use('/live', (request, response) => {
+  return response.sendStatus(200);
+});
 
 const nameServiceHost = process.env.NAME_SERVICE_HOST || 'http://nodejs-circuit-breaker-name:8080';
 

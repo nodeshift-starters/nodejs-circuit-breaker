@@ -22,13 +22,18 @@ const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const probe = require('kube-probe');
 
 const app = express();
 const server = http.createServer(app);
 
 // Adds basic health-check endpoints
-probe(app);
+app.use('/ready', (request, response) => {
+  return response.sendStatus(200);
+});
+
+app.use('/live', (request, response) => {
+  return response.sendStatus(200);
+});
 
 let isOn = true;
 const { update, sendMessage } = require('./lib/web-socket')(server, _ => isOn);

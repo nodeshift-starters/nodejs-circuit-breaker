@@ -52,8 +52,6 @@ require('./lib/web-socket')(server, circuit);
 
 // Serve index.html from the file system
 app.use(express.static(path.join(__dirname, 'public')));
-// Expose the license.html at http[s]://[host]:[port]/licences/licenses.html
-app.use('/licenses', express.static(path.join(__dirname, 'licenses')));
 
 // Send and receive json
 app.use(bodyParser.json());

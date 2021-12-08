@@ -66,7 +66,4 @@ app.put('/api/state', (request, response) => {
 app.get('/api/info',
   (request, response) => response.send({ state: isOn ? 'ok' : 'fail' }));
 
-// Expose the license.html at http[s]://[host]:[port]/licenses/licenses.html
-app.use('/licenses', express.static(path.join(__dirname, 'licenses')));
-
 module.exports = server;

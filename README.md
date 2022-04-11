@@ -1,7 +1,5 @@
 # Circuit Breaker Example - Node.js
 
-[![Build Status](https://travis-ci.org/nodeshift-starters/nodejs-circuit-breaker.svg?branch=master)](https://travis-ci.org/nodeshift-starters/nodejs-circuit-breaker) [![Greenkeeper badge](https://badges.greenkeeper.io/nodeshift-starters/nodejs-circuit-breaker.svg)](https://greenkeeper.io/)
-
 The Circuit Breaker Example demonstrates a generic pattern for reporting the
 failure of a service and then limiting access to the failed service until it
 becomes available to handle requests. This helps prevent cascading failure in
@@ -78,7 +76,7 @@ The cluster should be started, and you should be logged in with a currently
 active project. Then run the `./start-openshift.sh` script.
 
 ```sh
-$ oc new-project circuit-breaker-example-redhat # Create a project to deploy to
+$ oc new-project circuit-breaker-example # Create a project to deploy to
 $ ./start-openshift.sh # Launch the example app
 ```
 

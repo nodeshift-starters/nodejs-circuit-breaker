@@ -8,6 +8,27 @@ other services that depend on the failed services for functionality.
 This example shows you how to implement a Circuit Breaker and Fallback pattern
 in your services.
 
+## Community vs. Fully Supported
+
+By default,  this example will show how to use the community version of the [Opossum Circuit Breaker](https://www.npmjs.com/package/opossum)
+
+To use the fully supported version of Opossum, there are a couple steps that should be completed.  Note: All the steps should be performed in the `greeting-service` sub-directory
+
+1. Make sure there is a [`.npmrc`](./greeting-service/.npmrc) file in the root of the `greeting-service` directory.
+
+2. Uninstall the community version first with `npm uninstall opossum` then install the fully supported version with this command: `npm install @redhat/opossum`
+
+3. In the [app.js](./greeting-service/app.js) file:
+
+```
+/* Remove or comment out the line below */
+const Opossum = require('opossum');
+
+/* Uncomment the line below to use the fully Red Hat Supported version of Opossum */
+// const Opossum = require('@redhat/opossum');
+```
+For more information on Red Hat's Node.js offerings, [click here](https://access.redhat.com/documentation/en-us/red_hat_build_of_node.js/)
+
 ## About Circuit Breaker
 
 The Circuit Breaker is a pattern intended to mitigate the impact of network

@@ -20,7 +20,11 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
+
 const Opossum = require('opossum');
+/* Uncomment the line below to use the fully Red Hat Supported version of Opossum */
+// const Opossum = require('@redhat/opossum');
+
 const nameService = require('./lib/name-service-client');
 
 const app = express();

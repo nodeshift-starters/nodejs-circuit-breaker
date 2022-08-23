@@ -77,7 +77,7 @@ enabling traffic to reach the remote service again.
 
 ## Running The Example
 
-You can run this example as node processes on your localhost or as pods on an Openshift Cluster.  [Code Ready Container](https://developers.redhat.com/products/codeready-containers/overview) can be used to try out Openshift locally.
+You can run this example as node processes on your localhost or as pods on an Openshift Cluster.  [OpenShift Local](https://developers.redhat.com/products/codeready-containers/overview) can be used to try out Openshift locally.
 
 ### Localhost
 
@@ -91,7 +91,7 @@ $ ./start-localhost.sh
 This will launch the greeting service on port 8080 and the name
 service on port 8081. To kill the servers, run `./shutdown-localhost.sh`.
 
-### Code Ready Containers
+### OpenShift Local
 
 The cluster should be started, and you should be logged in with a currently
 active project. Then run the `./start-openshift.sh` script.

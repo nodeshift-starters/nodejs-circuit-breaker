@@ -7,7 +7,7 @@
     "pretest": "eslint --ignore-path ../.gitignore .",
     "test": "mocha test/integration/*.js",
     "coverage": "istanbul cover tape test/*.js",
-    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-14 --metadata.out=nodeshift-metadata.json",
+    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-16 --metadata.out=nodeshift-metadata.json",
     "start": "node ."
   },
   "main": "./bin/www",

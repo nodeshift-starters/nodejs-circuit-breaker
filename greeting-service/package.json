@@ -9,7 +9,7 @@
     "coverage": "nyc npm test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "start": "node .",
-    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-14 --metadata.out=nodeshift-metadata.json"
+    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-16 --metadata.out=nodeshift-metadata.json"
   },
   "main": "./bin/www",
   "repository": {

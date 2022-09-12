@@ -1,107 +1,68 @@
-# Circuit Breaker Example - Node.js
+## OpenTelemetry with OpenShift Distributed Tracing Platform
 
-The Circuit Breaker Example demonstrates a generic pattern for reporting the
-failure of a service and then limiting access to the failed service until it
-becomes available to handle requests. This helps prevent cascading failure in
-other services that depend on the failed services for functionality.
-
-This example shows you how to implement a Circuit Breaker and Fallback pattern
-in your services.
-
-## Community vs. Fully Supported
-
-By default,  this example will show how to use the community version of the [Opossum Circuit Breaker](https://www.npmjs.com/package/opossum)
-
-To use the fully supported version of Opossum, there are a couple steps that should be completed.  Note: All the steps should be performed in the `greeting-service` sub-directory
-
-1. Make sure there is a [`.npmrc`](./greeting-service/.npmrc) file in the root of the `greeting-service` directory.
-
-2. Uninstall the community version first with `npm uninstall opossum` then install the fully supported version with this command: `npm install @redhat/opossum`
-
-3. In the [app.js](./greeting-service/app.js) file:
+Start OpenShift local and create a new project.
 
 ```
-/* Remove or comment out the line below */
-const Opossum = require('opossum');
-
-/* Uncomment the line below to use the fully Red Hat Supported version of Opossum */
-// const Opossum = require('@redhat/opossum');
+$ crc setup
+$ crc start
+$ eval $(crc oc-env)
+$ oc login -u developer
+$ oc new-project opentelemetry-js-rhosdt
 ```
-For more information on Red Hat's Node.js offerings, [click here](https://access.redhat.com/documentation/en-us/red_hat_build_of_node.js/)
+### Install the OpenShift Distributed Tracing Platform Operator
 
-## About Circuit Breaker
+1. Login as kubeadmin
+2. Go to OperatorHub
+3. Search for Jaeger
+4. Click on `Red Hat OpenShift distributed tracing platform` and follow the instructions to install.
 
-The Circuit Breaker is a pattern intended to mitigate the impact of network
-failure and high latency on service architectures where services synchronously
-invoke other services. In such cases, if one of the services becomes
-unavailable due to network failure or incurs unusually high latency values due
-to overwhelming traffic, other services attempting to call its endpoint may
-end up exhausting critical resources in an attempt to reach it, rendering
-themselves unusable. This condition is also known as cascading failure and can
-render the entire microservice architecture unusable.
+![kubeadmin-login-operatorhub](images/kubeadmin.png)
 
-Essentially, the Circuit Breaker acts as a proxy between a protected function
-and a remote function, which monitors for failures. Once the failures reach a
-certain threshold, the circuit breaker trips, and all further calls to the
-circuit breaker return with an error or a predefined fallback response,
-without the protected call being made at all. The Circuit Breaker usually also
-contains an error reporting mechanism that notifies you when the Circuit
-Breaker trips.
+5. Login as developer, go to Topology and add the Jaeger Operator to the project.
 
-## Why is Circuit Breaker Important
+![operator](images/operator.png)
 
-In an architecture where multiple services depend on each other for
-functionality, a failure in one service can rapidly propagate to its dependent
-services, causing the entire architecture to collapse. Implementing a Circuit
-Breaker pattern helps prevent this. With the Circuit Breaker pattern
-implemented, a service client invokes a remote service endpoint via a proxy at
-regular intervals. If the calls to the remote service endpoint fail repeatedly
-and consistently, the Circuit Breaker trips, making all calls to the service
-fail immediately over a set timeout period and returns a predefined fallback
-response. When the timeout period expires, a limited number of test calls are
-allowed to pass through to the remote service to determine whether it has
-healed, or remains unavailable. If these test calls fail, the Circuit Breaker
-keeps the service unavailable and keeps returning the fallback responses to
-incoming calls. If the test calls succeed, the Circuit Breaker closes, fully
-enabling traffic to reach the remote service again.
+![jaeger](images/jaeger.png)
 
-## Design Tradeoffs
+![topology](images/topology.png)
 
-### Pros
-* Enables a service to handle the failure of other services it invokes.
-
-### Cons
-* Optimizing the timeout values can be challenging
-* Larger-than-necessary timeout values may generate excessive latency.
-* Smaller-than-necessary timeout values may introduce false positives.
-
-## Running The Example
-
-You can run this example as node processes on your localhost or as pods on an Openshift Cluster.  [OpenShift Local](https://developers.redhat.com/products/codeready-containers/overview) can be used to try out Openshift locally.
-
-### Localhost
-
-To run the basic application on your local machine, just run the
-`start-localhost.sh` script.
+6. Configure the URL for the JaegerExporter endpoint
 
 ```
-$ ./start-localhost.sh
+❯ oc get svc
+NAME                                            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                                                    AGE
+jaeger-all-in-one-inmemory-agent                ClusterIP   None           <none>        5775/UDP,5778/TCP,6831/UDP,6832/UDP                        2m16s
+jaeger-all-in-one-inmemory-collector            ClusterIP   10.217.5.57    <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP,4317/TCP,4318/TCP   2m16s
+jaeger-all-in-one-inmemory-collector-headless   ClusterIP   None           <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP,4317/TCP,4318/TCP   2m16s
+jaeger-all-in-one-inmemory-query                ClusterIP   10.217.5.219   <none>        443/TCP,16685/TCP                                          2m16s
 ```
 
-This will launch the greeting service on port 8080 and the name
-service on port 8081. To kill the servers, run `./shutdown-localhost.sh`.
+We are going to use `jaeger-all-in-one-inmemory-collector` + 
+our namespace service `opentelemetry-js-rhosdt.svc` for the
+ `JaegerExporter` endpoint. 
+ 
+Resulting in the following:
 
-### OpenShift Local
-
-The cluster should be started, and you should be logged in with a currently
-active project. Then run the `./start-openshift.sh` script.
-
-```sh
-$ oc new-project circuit-breaker-example # Create a project to deploy to
-$ ./start-openshift.sh # Launch the example app
+(content from the [tracing.js](./tracing.js) file)
+```js
+const exporter = new JaegerExporter({
+  endpoint: 'http://jaeger-all-in-one-inmemory-collector.opentelemetry-js-rhosdt.svc:14268/api/traces'
+});
 ```
 
-## Further Reading
-* [microservices.io: Microservice Patterns: Circuit Breaker](http://microservices.io/patterns/reliability/circuit-breaker.html)
-* [Martin Fowler: CircuitBreaker](https://martinfowler.com/bliki/CircuitBreaker.html)
+7. Deploy the example to OpenShift local
 
+```
+cd greeting-service
+npm install
+npm run openshift
+cd ../name-service
+npm install
+npm run openshift
+```
+
+8. When you login on Jaeger UI you can see the result like this:
+
+![result1](images/result1.png)
+
+![result2](images/result2.png)

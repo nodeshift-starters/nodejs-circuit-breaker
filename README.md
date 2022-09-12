@@ -101,6 +101,13 @@ $ oc new-project circuit-breaker-example # Create a project to deploy to
 $ ./start-openshift.sh # Launch the example app
 ```
 
+### OpenTelemetry with OpenShift Distributed Tracing Platform
+
+Clone this repository, switch the branch to `opentelemetry-js-rhosdt`
+and follow the instructions on README.md
+
+Or visualize the instructions via github https://github.com/nodeshift-starters/nodejs-circuit-breaker/tree/opentelemetry-js-rhosdt#opentelemetry-with-openshift-distributed-tracing-platform
+
 ## Further Reading
 * [microservices.io: Microservice Patterns: Circuit Breaker](http://microservices.io/patterns/reliability/circuit-breaker.html)
 * [Martin Fowler: CircuitBreaker](https://martinfowler.com/bliki/CircuitBreaker.html)

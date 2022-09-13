@@ -43,7 +43,6 @@ our namespace service `opentelemetry-js-rhosdt.svc` for the
  
 Resulting in the following:
 
-(content from the [tracing.js](./tracing.js) file)
 ```js
 const exporter = new JaegerExporter({
   endpoint: 'http://jaeger-all-in-one-inmemory-collector.opentelemetry-js-rhosdt.svc:14268/api/traces'

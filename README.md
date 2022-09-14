@@ -103,10 +103,8 @@ $ ./start-openshift.sh # Launch the example app
 
 ### OpenTelemetry with OpenShift Distributed Tracing Platform
 
-Clone this repository, switch the branch to `opentelemetry-js-rhosdt`
-and follow the instructions on README.md
-
-Or visualize the instructions via github https://github.com/nodeshift-starters/nodejs-circuit-breaker/tree/opentelemetry-js-rhosdt#opentelemetry-with-openshift-distributed-tracing-platform
+This [link](./OTEL.md) contains instructions on how to install the 
+OpenShift Distributed Tracing Platform and enable tracing. 
 
 ## Further Reading
 * [microservices.io: Microservice Patterns: Circuit Breaker](http://microservices.io/patterns/reliability/circuit-breaker.html)

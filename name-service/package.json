@@ -4,9 +4,7 @@
   "author": "Red Hat, Inc.",
   "license": "Apache-2.0",
   "scripts": {
-    "pretest": "eslint --ignore-path ../.gitignore .",
-    "test": "mocha test/integration/*.js",
-    "coverage": "istanbul cover tape test/*.js",
+    "lint": "eslint --ignore-path ../.gitignore .",
     "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-16 --metadata.out=nodeshift-metadata.json",
     "start": "node ."
   },
@@ -33,7 +31,6 @@
     "istanbul": "~0.4.5",
     "mocha": "^10.0.0",
     "nodeshift": "~8.7.0",
-    "rhoaster": "^0.4.1",
     "supertest": "~6.2.4"
   },
   "description": "",

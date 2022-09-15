@@ -4,10 +4,7 @@
   "author": "Red Hat, Inc.",
   "license": "Apache-2.0",
   "scripts": {
-    "pretest": "eslint --ignore-path ../.gitignore .",
-    "test": "mocha test/integration/*.js",
-    "coverage": "nyc npm test",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "lint": "eslint --ignore-path ../.gitignore .",
     "start": "node .",
     "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-16 --metadata.out=nodeshift-metadata.json"
   },
@@ -34,8 +31,6 @@
     "eslint-config-semistandard": "^17.0.0",
     "mocha": "^10.0.0",
     "nodeshift": "~8.7.0",
-    "nyc": "~15.1.0",
-    "rhoaster": "^0.4.1",
     "supertest": "~6.2.4"
   },
   "gitHubUser": "lance",

@@ -29,9 +29,7 @@
   "devDependencies": {
     "eslint": "^8.22.0",
     "eslint-config-semistandard": "^17.0.0",
-    "mocha": "^10.0.0",
-    "nodeshift": "~8.7.0",
-    "supertest": "~6.2.4"
+    "nodeshift": "~8.7.0"
   },
   "gitHubUser": "lance",
   "description": "demonstrates a generic pattern for reporting the failure of a service and then limiting access to the failed service until it becomes available to handle requests.",

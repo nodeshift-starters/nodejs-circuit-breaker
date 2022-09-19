@@ -28,10 +28,7 @@
   "devDependencies": {
     "eslint": "^8.22.0",
     "eslint-config-semistandard": "^17.0.0",
-    "istanbul": "~0.4.5",
-    "mocha": "^10.0.0",
-    "nodeshift": "~8.7.0",
-    "supertest": "~6.2.4"
+    "nodeshift": "~8.7.0"
   },
   "description": "",
   "dependencies": {

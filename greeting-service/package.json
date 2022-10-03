@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint --ignore-path ../.gitignore .",
     "start": "node .",
-    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-16 --metadata.out=nodeshift-metadata.json"
+    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-16 --metadata.out=nodeshift-metadata.json",
+    "openshift:enable:trace": "nodeshift --deploy.env NODE_OPTIONS='--require ./tracing.js' --dockerImage=registry.access.redhat.com/ubi8/nodejs-16 --metadata.out=nodeshift-metadata.json"
   },
   "main": "./bin/www",
   "repository": {
@@ -20,6 +21,7 @@
     "lib",
     "public",
     "app.js",
+    "logger.js",
     "tracing.js"
   ],
   "bugs": {
@@ -54,6 +56,7 @@
     "body-parser": "~1.20.0",
     "express": "~4.18.1",
     "opossum": "~6.4.0",
-    "ws": "~8.8.1"
+    "ws": "~8.8.1",
+    "pino": "^8.4.2"
   }
 }

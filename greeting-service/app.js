@@ -17,7 +17,7 @@
  */
 'use strict';
 
-// require('./tracing.js');
+const logger = require('./logger.js');
 
 const path = require('path');
 const http = require('http');
@@ -67,7 +67,7 @@ app.use(bodyParser.json());
 app.get('/api/greeting', (request, response) => {
   circuit.fire(`${nameServiceHost}/api/name`).then(name => {
     response.send({ content: `Hello, ${name}`, time: new Date() });
-  }).catch(console.error);
+  }).catch(logger.error);
 });
 
 // Circuit breaker state API

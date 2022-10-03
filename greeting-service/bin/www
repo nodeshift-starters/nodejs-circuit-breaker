@@ -17,6 +17,9 @@
  *
  */
 'use strict';
+
+const logger = require('../logger.js');
+
 const server = require('../app');
 
 const port = normalizePort(process.env.PORT || '8080');
@@ -57,11 +60,11 @@ function onError (error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      logger.error(bind + ' requires elevated privileges');
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      logger.error(bind + ' is already in use');
       process.exit(1);
       break;
     default:
@@ -77,5 +80,5 @@ function onListening () {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  console.log('Listening on ' + bind);
+  logger.info('Listening on ' + bind);
 }

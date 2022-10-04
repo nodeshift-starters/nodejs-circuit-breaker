@@ -126,7 +126,7 @@
               .then(this.connectNameService)
               .then(this.initCircuitState)
               .then(this.connectCircuitService)
-              .catch(alert);
+              .catch(console.error);
           },
           async initNameServiceLocation() {
             this.nameServiceUrlBase = window.location.origin.replace(

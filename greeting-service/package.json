@@ -6,8 +6,8 @@
   "scripts": {
     "lint": "eslint --ignore-path ../.gitignore .",
     "start": "node .",
-    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-16 --metadata.out=nodeshift-metadata.json",
-    "openshift:enable:trace": "nodeshift --deploy.env NODE_OPTIONS='--require ./tracing.js' --dockerImage=registry.access.redhat.com/ubi8/nodejs-16 --metadata.out=nodeshift-metadata.json"
+    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-18 --metadata.out=nodeshift-metadata.json",
+    "openshift:enable:trace": "nodeshift --deploy.env NODE_OPTIONS='--require ./tracing.js' --dockerImage=registry.access.redhat.com/ubi8/nodejs-18 --metadata.out=nodeshift-metadata.json"
   },
   "main": "./bin/www",
   "repository": {

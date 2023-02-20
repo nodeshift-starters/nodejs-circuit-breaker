@@ -5,8 +5,8 @@
   "license": "Apache-2.0",
   "scripts": {
     "lint": "eslint --ignore-path ../.gitignore .",
-    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-16 --metadata.out=nodeshift-metadata.json",
-    "openshift:enable:trace": "nodeshift --deploy.env NODE_OPTIONS='--require ./tracing.js' --dockerImage=registry.access.redhat.com/ubi8/nodejs-16 --metadata.out=nodeshift-metadata.json",
+    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-18 --metadata.out=nodeshift-metadata.json",
+    "openshift:enable:trace": "nodeshift --deploy.env NODE_OPTIONS='--require ./tracing.js' --dockerImage=registry.access.redhat.com/ubi8/nodejs-18 --metadata.out=nodeshift-metadata.json",
     "start": "node ."
   },
   "main": "./bin/www",

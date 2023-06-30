@@ -171,10 +171,19 @@
           },
           // WebSocket connections
           connectNameService() {
-            const wsUrlBase = this.nameServiceUrlBase.replace(
-              'http://',
-              'ws://'
-            );
+            let wsUrlBase;
+
+            if (this.nameServiceUrlBase.includes('https')) {
+              wsUrlBase = this.nameServiceUrlBase.replace(
+                'https://',
+                'wss://'
+              );
+            } else {
+              wsUrlBase = this.nameServiceUrlBase.replace(
+                'http://',
+                'ws://'
+              );
+            }
             const socketUrl = `${wsUrlBase}/name-ws`;
             const wsocket = new WebSocket(socketUrl);
             wsocket.onmessage = this.onMessage;
@@ -190,10 +199,19 @@
             }
           },
           connectCircuitService() {
-            const cbWsUrlBase = window.location.origin.replace(
-              'http://',
-              'ws://'
-            );
+            let cbWsUrlBase;
+
+            if (window.location.origin.includes('https')) {
+              cbWsUrlBase = window.location.origin.replace(
+                'https://',
+                'wss://'
+              );
+            } else {
+              cbWsUrlBase = window.location.origin.replace(
+                'http://',
+                'ws://'
+              );
+            }
             const cbWsocket = new WebSocket(`${cbWsUrlBase}/cb-ws`);
             cbWsocket.onmessage = (evt) => {
               this.updateCircuitState(evt.data === 'isOpen:true');
